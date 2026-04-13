@@ -14,12 +14,12 @@
   },
   "navbar": {
     "links": [
-      { "label": "Plataforma", "href": "https://app.vibescale.run" }
+      { "label": "Plataforma", "href": "https://vibescale.run" }
     ],
     "primary": {
       "type": "button",
       "label": "Acessar plataforma",
-      "href": "https://app.vibescale.run"
+      "href": "https://vibescale.run"
     }
   },
   "navigation": {
@@ -183,9 +183,5 @@
   "contextual": {
     "options": ["copy", "view", "chatgpt", "claude"]
   },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/vibescale"
-    }
-  }
+  "footer": {}
 }
