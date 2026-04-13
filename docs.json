@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/docs.json",
   "name": "VibeScale",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/vibescale.png",
+    "dark": "/logo/vibescale.png"
   },
   "favicon": "/favicon.svg",
   "theme": "mint",
