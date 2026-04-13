@@ -183,5 +183,9 @@
   "contextual": {
     "options": ["copy", "view", "chatgpt", "claude"]
   },
-  "footer": {}
+  "footer": {
+    "socials": {
+      "instagram": "https://instagram.com/vibescale.run"
+    }
+  }
 }
