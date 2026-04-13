@@ -23,20 +23,6 @@
     }
   },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Dar feedback",
-          "icon": "github",
-          "href": "https://github.com/vibescale-run/vibescale-docs/issues"
-        },
-        {
-          "anchor": "Suporte",
-          "icon": "envelope",
-          "href": "mailto:suporte@vibescale.run"
-        }
-      ]
-    },
     "languages": [
       {
         "language": "pt-BR",
@@ -47,7 +33,10 @@
             "groups": [
               {
                 "group": "Introdução",
-                "pages": ["index", "primeiros-passos/visao-geral"]
+                "pages": [
+                  "index",
+                  "primeiros-passos/visao-geral"
+                ]
               },
               {
                 "group": "Primeiros Passos",
@@ -77,28 +66,29 @@
               },
               {
                 "group": "Tarefas",
-                "pages": ["tarefas/kanban"]
+                "pages": [
+                  "tarefas/kanban"
+                ]
               },
               {
                 "group": "Suporte",
-                "pages": ["suporte/inbox"]
+                "pages": [
+                  "suporte/inbox"
+                ]
               },
               {
                 "group": "Créditos",
-                "pages": ["creditos/carteira"]
+                "hidden": true,
+                "pages": [
+                  "creditos/carteira"
+                ]
               },
               {
                 "group": "Changelog",
-                "pages": ["changelog/index"]
-              }
-            ]
-          },
-          {
-            "tab": "API Reference",
-            "groups": [
-              {
-                "group": "Referência",
-                "pages": ["api-reference/introducao"]
+                "hidden": true,
+                "pages": [
+                  "changelog/index"
+                ]
               }
             ]
           }
@@ -112,7 +102,10 @@
             "groups": [
               {
                 "group": "Introduction",
-                "pages": ["en/index", "en/getting-started/overview"]
+                "pages": [
+                  "en/index",
+                  "en/getting-started/overview"
+                ]
               },
               {
                 "group": "Getting Started",
@@ -142,28 +135,29 @@
               },
               {
                 "group": "Tasks",
-                "pages": ["en/tasks/kanban"]
+                "pages": [
+                  "en/tasks/kanban"
+                ]
               },
               {
                 "group": "Support",
-                "pages": ["en/support/inbox"]
+                "pages": [
+                  "en/support/inbox"
+                ]
               },
               {
                 "group": "Credits",
-                "pages": ["en/credits/wallet"]
+                "hidden": true,
+                "pages": [
+                  "en/credits/wallet"
+                ]
               },
               {
                 "group": "Changelog",
-                "pages": ["en/changelog/index"]
-              }
-            ]
-          },
-          {
-            "tab": "API Reference",
-            "groups": [
-              {
-                "group": "Reference",
-                "pages": ["en/api-reference/introduction"]
+                "hidden": true,
+                "pages": [
+                  "en/changelog/index"
+                ]
               }
             ]
           }
