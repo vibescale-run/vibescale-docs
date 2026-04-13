@@ -1,0 +1,60 @@
+---
+title: "Visão geral — Segurança"
+description: "Entenda como o VibeScale analisa a segurança do seu repositório e por que a classificação de achados é o diferencial que importa."
+icon: "shield"
+---
+
+A **Verificação de Segurança** do VibeScale examina o seu repositório em quatro camadas simultâneas e devolve um relatório priorizável — sem configurar pipelines, sem instalar agentes, sem ruído de ferramentas de desenvolvimento que nunca chegam a produção.
+
+## O que é analisado
+
+<CardGroup cols={2}>
+  <Card title="Análise de Código" icon="code">
+    Identifica padrões inseguros diretamente no código que você escreveu: injeções, validações ausentes, exposição de dados sensíveis e outros problemas de lógica.
+  </Card>
+  <Card title="Revisão de Dependências" icon="package">
+    Verifica vulnerabilidades conhecidas nas bibliotecas que o seu projeto importa, incluindo dependências transitivas.
+  </Card>
+  <Card title="Detecção de Segredos" icon="key">
+    Procura credenciais, tokens e chaves de API que possam ter sido commitados acidentalmente no repositório.
+  </Card>
+  <Card title="Execução Runtime" icon="radar">
+    Avalia riscos que se manifestam em tempo de execução — configurações de servidor, cabeçalhos de segurança e superfície de ataque exposta.
+  </Card>
+</CardGroup>
+
+## A classificação que muda tudo
+
+A maioria das ferramentas de segurança joga todos os achados numa lista única. Resultado: dezenas de alertas, metade deles de ferramentas de desenvolvimento que nunca chegam ao ar — e você não sabe por onde começar.
+
+O VibeScale classifica cada achado em uma de três categorias:
+
+<AccordionGroup>
+  <Accordion title="Autorais — problemas no seu código">
+    Vulnerabilidades introduzidas diretamente pelo código que a sua equipe escreveu. **Estas são a sua responsabilidade e a sua prioridade.** Elas têm peso máximo no score e aparecem destacadas no relatório.
+  </Accordion>
+  <Accordion title="Herdados — vulnerabilidades de terceiros">
+    Falhas em bibliotecas que o seu projeto importa. Merecem revisão — especialmente se forem críticas — mas raramente exigem ação imediata, pois dependem de atualização de pacote, não de mudança no seu código.
+  </Accordion>
+  <Accordion title="Ruído — ferramentas de desenvolvimento">
+    Achados de pacotes usados apenas em desenvolvimento que nunca chegam ao ambiente de produção. Não afetam seu score. Ficam ocultos por padrão e podem ser exibidos quando necessário.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  Foque nos **Autorais** primeiro. São os únicos problemas que você pode corrigir diretamente no seu código hoje.
+</Tip>
+
+## Próximos passos
+
+<CardGroup cols={3}>
+  <Card title="Iniciar uma verificação" icon="shield-check" href="/seguranca/verificacao">
+    Saiba como iniciar o scan e o que esperar durante a análise.
+  </Card>
+  <Card title="Ler o relatório" icon="file-shield" href="/seguranca/relatorio">
+    Entenda o grade, as categorias de achados e como agir sobre cada um.
+  </Card>
+  <Card title="Metodologia de score" icon="book-open" href="/seguranca/metodologia">
+    Veja exatamente como calculamos o seu score de A a E.
+  </Card>
+</CardGroup>

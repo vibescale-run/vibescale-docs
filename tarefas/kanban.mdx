@@ -1,0 +1,62 @@
+---
+title: "Kanban de tarefas"
+description: "Gerencie as ações do seu app em um quadro visual com colunas de progresso."
+icon: "table-columns"
+---
+
+O **Kanban de Tarefas** centraliza tudo o que você precisa fazer no seu app em um único lugar. As tarefas são geradas automaticamente a partir de duas fontes:
+
+- **Opportunity** — ações identificadas pela análise de oportunidade de mercado
+- **Security** — correções recomendadas pelo relatório de segurança
+
+Você não precisa criar tarefas manualmente. O VibeScale gera e prioriza elas para você.
+
+## As 4 colunas do quadro
+
+<CardGroup cols={2}>
+  <Card title="TO DO" icon="circle">
+    Tarefas identificadas e aguardando início. Ponto de entrada de todas as novas ações.
+  </Card>
+  <Card title="IN PROGRESS" icon="circle-half-stroke">
+    Tarefas que você já começou a trabalhar.
+  </Card>
+  <Card title="IN REVIEW" icon="magnifying-glass">
+    Tarefas concluídas internamente e aguardando validação.
+  </Card>
+  <Card title="DONE" icon="circle-check">
+    Tarefas finalizadas. Tarefas de segurança marcadas aqui contribuem para desbloquear o Re-Check.
+  </Card>
+</CardGroup>
+
+## Abrindo uma tarefa
+
+Clique em qualquer card para abrir o painel de detalhes. Lá você encontra:
+
+- **Título e descrição** completos da ação recomendada
+- **Badge da fonte** — Opportunity ou Security
+- **Campo de notas internas** — registre o que foi feito, links de PRs ou contexto para o time
+- **Botão Salvar comentário** — persiste suas anotações
+- **Seletor de coluna** — move a tarefa para outra etapa
+- **Botão Concluir** — marca a tarefa como finalizada e a move para DONE
+
+## Copiando o prompt de IA
+
+Cada card exibe um ícone de área de transferência. Clique nele para copiar o **prompt de remediação** gerado pelo VibeScale. Cole diretamente no seu editor de IA preferido — Copilot, Cursor, Bolt ou similar.
+
+## Filtrando tarefas
+
+Use a barra de busca no topo do quadro para filtrar tarefas pelo título. A filtragem acontece em tempo real.
+
+## Prioridade das tarefas de segurança
+
+Tarefas originadas do relatório de segurança têm prioridade mapeada automaticamente:
+
+| Severidade | Prioridade |
+|------------|------------|
+| Crítico | P1 |
+| Alto | P2 |
+| Médio | P3 |
+
+<Tip>
+  Conclua as tarefas de segurança Críticas e Altas para desbloquear o **Re-Check** no relatório de segurança.
+</Tip>

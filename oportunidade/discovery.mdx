@@ -1,0 +1,80 @@
+---
+title: "Discovery"
+description: "A plataforma analisa seu repositório automaticamente e monta um painel com os dados-chave do seu produto."
+icon: "magnifying-glass"
+---
+
+O Discovery é a primeira etapa do pipeline de oportunidade. Assim que você conecta seu repositório GitHub, a plataforma inicia a análise automaticamente — sem nenhuma configuração adicional.
+
+## O que acontece durante a análise
+
+O VibeScale examina o código, a estrutura e os metadados do repositório para inferir o perfil do seu produto. Enquanto a análise roda, o painel exibe **"Analisando seu app..."** — isso é normal e costuma levar alguns minutos.
+
+Você não precisa fazer nada nesse momento. Pode deixar a página aberta ou voltar depois — o resultado fica salvo no painel.
+
+## O que é exibido após o Discovery
+
+Quando a análise termina, o painel exibe um conjunto de campos inferidos automaticamente:
+
+<CardGroup cols={2}>
+  <Card title="Categoria do app" icon="tag">
+    O segmento de mercado em que seu app se encaixa (ex.: produtividade, fintech, saúde).
+  </Card>
+  <Card title="Público-alvo" icon="users">
+    Para quem o app foi construído — perfil de usuário ou segmento de cliente.
+  </Card>
+  <Card title="Problema resolvido" icon="triangle-exclamation">
+    A dor principal que o app endereça, identificada a partir do código e da estrutura do produto.
+  </Card>
+  <Card title="Diferencial" icon="star">
+    O que torna seu app distinto frente às alternativas existentes.
+  </Card>
+  <Card title="Wow Moment" icon="bolt">
+    O momento em que o usuário percebe o valor real do produto pela primeira vez.
+  </Card>
+  <Card title="Caso de uso" icon="list-check">
+    O cenário concreto em que o app é usado e entrega mais valor.
+  </Card>
+  <Card title="Funcionalidade principal" icon="puzzle-piece">
+    A feature central que sustenta a proposta de valor do app.
+  </Card>
+  <Card title="Concorrentes" icon="chart-bar">
+    Produtos ou soluções alternativas que disputam o mesmo espaço de mercado.
+  </Card>
+</CardGroup>
+
+Além desses campos, o painel também exibe:
+
+- **Funcionalidades detectadas** — tags com as features identificadas no repositório
+- **Score de confiança** — uma barra que indica o quão sólidas são as inferências, baseada na completude e clareza do repositório
+- **Stack tecnológico** — linguagens, frameworks e ferramentas detectados
+- **Rotas e endpoints** — mapeamento das rotas ou endpoints encontrados no código
+
+## Origem dos dados: pesquisa web vs. inferência IA
+
+<Note>
+  Alguns campos, especialmente **Concorrentes**, indicam a origem da informação:
+
+  - **via pesquisa web** — dado obtido por busca ativa em fontes externas
+  - **via inferência IA** — dado deduzido a partir do código e da estrutura do repositório
+
+  Essa distinção ajuda você a avaliar a confiabilidade de cada campo antes de confirmá-lo na etapa de Alinhamento.
+</Note>
+
+## O que fazer se a análise demorar
+
+<AccordionGroup>
+  <Accordion title="O painel mostra 'Ainda processando...'">
+    Repositórios maiores ou com estruturas mais complexas podem levar mais tempo para serem analisados. Aguarde alguns minutos e recarregue a página — o resultado é salvo automaticamente assim que a análise termina.
+  </Accordion>
+  <Accordion title="O status continua 'Em Progresso' por muito tempo">
+    Se após 10 minutos o status ainda estiver em **Em Progresso**, verifique se o repositório conectado está acessível e tem código significativo. Entre em contato com o suporte se o problema persistir.
+  </Accordion>
+  <Accordion title="O status mudou para 'Falhou'">
+    Clique em **Executar novamente** no painel para reiniciar o Discovery. Se o erro persistir, entre em contato com o suporte informando o nome do repositório e o horário da tentativa.
+  </Accordion>
+</AccordionGroup>
+
+## Próximo passo
+
+Quando o Discovery estiver **Concluído**, avance para a etapa de [Alinhamento](/oportunidade/alignment).

@@ -1,0 +1,55 @@
+---
+title: "Iniciar uma verificação de segurança"
+description: "Como iniciar o scan, o que acontece durante a análise e como navegar para o relatório ao final."
+icon: "shield-check"
+---
+
+<Warning>
+  A Verificação de Segurança só fica disponível após a conclusão da **Opportunity Scale Review**. Conclua essa etapa primeiro antes de prosseguir.
+</Warning>
+
+## Como iniciar
+
+Você pode iniciar a verificação de dois lugares:
+
+- Na página **Security Check**, clique em **Iniciar análise**.
+- No dashboard principal, clique em **Iniciar Security Check**.
+
+As duas opções disparam exatamente o mesmo processo.
+
+## O que acontece durante a análise
+
+A verificação leva aproximadamente **20 segundos** e executa quatro etapas em sequência. Você acompanha o progresso em tempo real:
+
+<Steps>
+  <Step title="Análise de Código">
+    Examina o código-fonte do repositório em busca de padrões inseguros, lógica vulnerável e exposição de dados sensíveis.
+
+    Status exibido: **Analisando...** → **Concluído**
+  </Step>
+  <Step title="Revisão de Dependências">
+    Verifica todas as bibliotecas importadas pelo projeto — incluindo dependências indiretas — contra bases de vulnerabilidades conhecidas.
+
+    Status exibido: **Analisando...** → **Concluído**
+  </Step>
+  <Step title="Detecção de Segredos">
+    Varre o histórico e os arquivos do repositório em busca de credenciais, tokens e chaves de API commitados acidentalmente.
+
+    Status exibido: **Analisando...** → **Concluído**
+  </Step>
+  <Step title="Execução Runtime">
+    Avalia a superfície de ataque em tempo de execução: configurações de servidor, cabeçalhos HTTP e outros riscos que se manifestam em produção.
+
+    Status exibido: **Analisando...** → **Concluído**
+  </Step>
+</Steps>
+
+Uma barra de progresso e um percentual geral são exibidos durante toda a análise. Etapas anteriores aparecem como **Concluído**; etapas posteriores aparecem como **Aguardando...**.
+
+## Após a conclusão
+
+Quando a análise terminar, você verá a mensagem **"Security Check Concluído!"** e o botão **Ver Security Report** será habilitado.
+
+<Tip>
+  Para executar a análise novamente após corrigir vulnerabilidades, use o **Re-Check** — disponível no relatório assim que todos os achados críticos e altos forem resolvidos ou descartados.
+</Tip>

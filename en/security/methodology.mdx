@@ -1,0 +1,58 @@
+---
+title: "Score methodology"
+description: "How VibeScale classifies findings and calculates your security grade from A to E."
+icon: "book-open"
+---
+
+<Note>
+  This document describes exactly how we calculate your security score.
+</Note>
+
+## Why we classify findings into three categories
+
+Most security tools treat all vulnerabilities the same way — which leads to lists with dozens of alerts, many of them from development tools that never reach production.
+
+VibeScale separates findings into three categories so the score reflects **only the real risk of your app in production**:
+
+| Category | What it represents | Score weight |
+|----------|--------------------|--------------|
+| **Authored** | Problems in the code you wrote | Maximum |
+| **Inherited** | Vulnerabilities in third-party libraries | Moderate |
+| **Noise** | Dev tools that never reach production | None |
+
+This prevents a development server or build utility from lowering your grade — because they represent no real risk to your users.
+
+## A–E grade scale
+
+| Grade | Label | Conditions |
+|-------|-------|------------|
+| **A** | Excellent | Score ≥ 90 points and few inherited findings |
+| **B** | Good | Score ≥ 75 and no Critical authored finding |
+| **C** | Acceptable | Score ≥ 60 and up to 2 authored High findings |
+| **D** | Attention | Score ≥ 40 **or** 1 Critical authored finding |
+| **E** | Critical | Score < 40 **or** 2 or more Critical authored findings |
+
+<Note>
+  A single **authored** Critical finding moves the grade to D or E regardless of the numeric score — because problems in your own code represent direct and immediate risk.
+</Note>
+
+## CVSS — Technical severity
+
+**CVSS (Common Vulnerability Scoring System)** is the industry standard for measuring the technical severity of a vulnerability, on a scale from 0 to 10. It reflects characteristics such as ease of exploitation and impact on data confidentiality, integrity, and availability.
+
+VibeScale uses CVSS to determine the severity level of each finding: Minimal, Low, Medium, High, or Critical.
+
+## EPSS — Real exploitation probability
+
+**EPSS (Exploit Prediction Scoring System)** is published by [FIRST.org](https://www.first.org/epss/) and measures the **probability of a vulnerability being actively exploited in the next 30 days**, based on real internet activity data.
+
+While CVSS answers *"how technically severe is this?"*, EPSS answers *"what's the chance someone actually exploits this right now?"*.
+
+| Badge displayed | EPSS threshold | Meaning |
+|----------------|----------------|---------|
+| 🔴 Active exploitation | ≥ 90th percentile | Among the vulnerabilities most likely to be exploited in the next 30 days |
+| 🟠 Elevated risk | 50th–90th percentile | Above the industry median |
+
+<Tip>
+  Use EPSS to break priority ties. If two findings have High severity but one has an **Active exploitation** badge and the other doesn't, fix the first one.
+</Tip>

@@ -1,0 +1,60 @@
+---
+title: "Security — Overview"
+description: "Understand how VibeScale analyzes your repository's security and why finding classification is the differentiator that matters."
+icon: "shield"
+---
+
+VibeScale's **Security Check** examines your repository across four simultaneous layers and returns a prioritizable report — without configuring pipelines, installing agents, or dealing with noise from development tools that never reach production.
+
+## What is analyzed
+
+<CardGroup cols={2}>
+  <Card title="Code Analysis" icon="code">
+    Identifies insecure patterns directly in the code you wrote: injections, missing validations, sensitive data exposure, and other logic issues.
+  </Card>
+  <Card title="Dependency Review" icon="package">
+    Checks for known vulnerabilities in the libraries your project imports, including transitive dependencies.
+  </Card>
+  <Card title="Secret Detection" icon="key">
+    Searches for credentials, tokens, and API keys that may have been accidentally committed to the repository.
+  </Card>
+  <Card title="Runtime Execution" icon="radar">
+    Evaluates risks that manifest at runtime — server configurations, security headers, and exposed attack surface.
+  </Card>
+</CardGroup>
+
+## The classification that changes everything
+
+Most security tools dump all findings into a single list. The result: dozens of alerts, half of them from development tools that never go live — and you don't know where to start.
+
+VibeScale classifies each finding into one of three categories:
+
+<AccordionGroup>
+  <Accordion title="Authored — problems in your code">
+    Vulnerabilities introduced directly by the code your team wrote. **These are your responsibility and your priority.** They carry maximum weight in the score and appear highlighted in the report.
+  </Accordion>
+  <Accordion title="Inherited — third-party vulnerabilities">
+    Flaws in libraries your project imports. Worth reviewing — especially critical ones — but rarely require immediate action, since they depend on a package update, not a change in your own code.
+  </Accordion>
+  <Accordion title="Noise — development tools">
+    Findings from packages used only in development that never reach production. They do not affect your score. Hidden by default and can be shown when needed.
+  </Accordion>
+</AccordionGroup>
+
+<Tip>
+  Focus on **Authored** findings first. They are the only problems you can fix directly in your own code today.
+</Tip>
+
+## Next steps
+
+<CardGroup cols={3}>
+  <Card title="Run a check" icon="shield-check" href="/en/security/scan">
+    Learn how to start the scan and what to expect during analysis.
+  </Card>
+  <Card title="Read the report" icon="file-shield" href="/en/security/report">
+    Understand the grade, finding categories, and how to act on each one.
+  </Card>
+  <Card title="Score methodology" icon="book-open" href="/en/security/methodology">
+    See exactly how we calculate your score from A to E.
+  </Card>
+</CardGroup>

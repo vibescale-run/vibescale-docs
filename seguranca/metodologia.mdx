@@ -1,0 +1,58 @@
+---
+title: "Metodologia de score"
+description: "Como o VibeScale classifica achados e calcula o seu grade de segurança de A a E."
+icon: "book-open"
+---
+
+<Note>
+  Este documento descreve exatamente como calculamos o seu score de segurança.
+</Note>
+
+## Por que classificamos achados em três categorias
+
+A maioria das ferramentas de segurança trata todas as vulnerabilidades da mesma forma — o que leva a listas com dezenas de alertas, muitos deles de ferramentas de desenvolvimento que nunca chegam a produção.
+
+O VibeScale separa os achados em três categorias para que o score reflita **apenas o risco real do seu app em produção**:
+
+| Categoria | O que representa | Peso no score |
+|-----------|-----------------|---------------|
+| **Autorais** | Problemas no código que você escreveu | Máximo |
+| **Herdados** | Vulnerabilidades em bibliotecas de terceiros | Moderado |
+| **Ruído** | Ferramentas de dev que não chegam a produção | Nenhum |
+
+Isso evita que um servidor de desenvolvimento ou utilitário de build derrube o seu grade — porque eles não representam risco real para os seus usuários.
+
+## Escala de grades A–E
+
+| Grade | Rótulo | Condições |
+|-------|--------|-----------|
+| **A** | Excelente | Score ≥ 90 pontos e poucos achados herdados |
+| **B** | Boa | Score ≥ 75 e nenhum achado Crítico autoral |
+| **C** | Aceitável | Score ≥ 60 e até 2 achados Altos autorais |
+| **D** | Atenção | Score ≥ 40 **ou** 1 achado Crítico autoral |
+| **E** | Crítico | Score < 40 **ou** 2 ou mais achados Críticos autorais |
+
+<Note>
+  Um único achado Crítico **autoral** move o grade para D ou E independentemente do score numérico — porque problemas no seu próprio código representam risco direto e imediato.
+</Note>
+
+## CVSS — Severidade técnica
+
+**CVSS (Common Vulnerability Scoring System)** é o padrão da indústria para medir a severidade técnica de uma vulnerabilidade, em uma escala de 0 a 10. Reflete características como facilidade de exploração e impacto na confidencialidade, integridade e disponibilidade dos dados.
+
+O VibeScale usa o CVSS para determinar o nível de severidade de cada achado: Mínimo, Baixo, Médio, Alto ou Crítico.
+
+## EPSS — Probabilidade real de exploração
+
+**EPSS (Exploit Prediction Scoring System)** é publicado pelo [FIRST.org](https://www.first.org/epss/) e mede a **probabilidade de uma vulnerabilidade ser ativamente explorada nos próximos 30 dias**, com base em dados reais de atividade na internet.
+
+Enquanto o CVSS responde *"quão grave é tecnicamente?"*, o EPSS responde *"qual a chance de alguém realmente explorar isso agora?"*.
+
+| Badge exibido | Threshold de EPSS | Significado |
+|---------------|-------------------|-------------|
+| 🔴 Exploração ativa | ≥ 90º percentil | Entre as vulnerabilidades mais prováveis de serem exploradas nos próximos 30 dias |
+| 🟠 Risco elevado | 50º–90º percentil | Acima da mediana da indústria |
+
+<Tip>
+  Use o EPSS para desempatar prioridades. Se dois achados têm severidade Alta, mas um tem badge de **Exploração ativa** e o outro não, corrija o primeiro.
+</Tip>

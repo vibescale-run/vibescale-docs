@@ -1,0 +1,117 @@
+---
+title: "Lendo o relatório de segurança"
+description: "Como interpretar o grade, as categorias de achados e os níveis de severidade — e como agir sobre cada problema encontrado."
+icon: "file-shield"
+---
+
+O relatório de segurança reúne todos os achados da análise em uma visão priorizada. Esta página explica cada seção e as ações disponíveis.
+
+## Grade e score
+
+O cabeçalho do relatório exibe:
+
+- **Letra de grade** — de **A** (melhor) a **E** (crítico), com rótulo em português:
+
+| Grade | Rótulo |
+|-------|--------|
+| A | Excelente |
+| B | Boa |
+| C | Aceitável |
+| D | Atenção |
+| E | Crítico |
+
+- **Score numérico** — de 0 a 100.
+- **Sumário** — uma frase que reflete o estado geral:
+  - *"X items autorais pedem atenção"*
+  - *"Apenas dependências herdadas — sem ações urgentes"*
+  - *"Nenhum problema detectado"*
+
+Clique no link **metodologia** ao lado do sumário para ver exatamente como o score é calculado.
+
+## Categorias de achados
+
+Cada achado pertence a uma das três categorias abaixo. Entender a diferença é o passo mais importante para priorizar corretamente.
+
+<AccordionGroup>
+  <Accordion title="Autorais — problemas no seu código">
+    Vulnerabilidades introduzidas diretamente pelo código que a sua equipe escreveu. **Priorize estes.** Eles têm peso máximo no score. Se o contador de Autorais for maior que zero, o score será afetado de forma significativa.
+  </Accordion>
+  <Accordion title="Herdados — vulnerabilidades de bibliotecas">
+    Falhas em pacotes de terceiros que o seu projeto importa. Merecem revisão — especialmente críticos e altos — mas a correção depende de atualizar a versão do pacote, não de alterar o seu código diretamente.
+  </Accordion>
+  <Accordion title="Ruído — ferramentas de desenvolvimento">
+    Achados de pacotes usados apenas em desenvolvimento que nunca chegam a produção. **Não afetam seu score.** Ficam ocultos por padrão.
+
+    Para visualizá-los, clique em **"Mostrar X itens de ruído (dev-only)"** na parte inferior da lista.
+  </Accordion>
+</AccordionGroup>
+
+## Níveis de severidade
+
+Dentro de cada categoria, os achados são ordenados por severidade:
+
+| Severidade | Significado |
+|------------|-------------|
+| **Crítico** | Risco imediato de comprometimento. Corrija antes de qualquer outra coisa. |
+| **Alto** | Risco sério que deve ser resolvido na próxima sprint. |
+| **Médio** | Risco moderado. Planeje a correção. |
+| **Baixo** | Impacto limitado. Corrija quando conveniente. |
+| **Mínimo** | Informativo. Baixíssimo impacto prático. |
+
+## Badges de EPSS
+
+Alguns achados exibem um badge adicional de risco de exploração real:
+
+<CardGroup cols={2}>
+  <Card title="🔴 Exploração ativa" icon="fire">
+    **≥ 90º percentil do EPSS.** Este achado está entre os mais prováveis de serem explorados nos próximos 30 dias, segundo dados do FIRST.org. Priorize a correção imediatamente.
+  </Card>
+  <Card title="🟠 Risco elevado" icon="triangle-exclamation">
+    **Entre o 50º e o 90º percentil.** Acima da mediana da indústria. Vale agendar a correção.
+  </Card>
+</CardGroup>
+
+<Note>
+  O EPSS mede a **probabilidade real de exploração**, não apenas a severidade técnica. Um achado de severidade Médio com badge de **Exploração ativa** pode ser mais urgente do que um Alto sem badge.
+</Note>
+
+## Detalhes de um achado
+
+Clique em qualquer achado para ver:
+
+- Título e badge de severidade (ex.: RISCO CRÍTICO, RISCO ALTO)
+- Descrição do problema
+- Localização afetada — caminho do arquivo ou nome do módulo
+- Trecho de código — quando disponível
+- Sugestão de correção
+- Classificação — Autoral / Herdado / Ruído
+
+## Ações disponíveis
+
+### Marcar como resolvido
+
+Clique no checkbox ao lado do achado para marcá-lo como resolvido após aplicar a correção.
+
+### Criar uma tarefa no Kanban
+
+Clique em **Criar Tarefa** para enviar o achado diretamente para o seu Kanban. A prioridade é mapeada automaticamente:
+
+| Severidade | Prioridade no Kanban |
+|------------|----------------------|
+| Crítico | P1 |
+| Alto | P2 |
+| Médio | P3 |
+
+Após criar a tarefa, um badge de status aparece no achado: **A Fazer / Em Progresso / Em Revisão / Concluído**.
+
+### Usar o prompt de correção com IA
+
+Clique em **Prompt de Correção para Agente de IA** para copiar um prompt de remediação pronto para colar no seu assistente de código preferido — Copilot, Cursor, Bolt ou similar. O prompt já inclui o contexto do achado e as instruções de correção.
+
+## Desbloqueando o Re-Check
+
+O botão **Re-Check** fica bloqueado até que **todos os achados Críticos e Altos** estejam marcados como resolvidos ou descartados.
+
+<Warning>
+  O Re-Check não será habilitado enquanto houver achados Críticos ou Altos pendentes — independentemente da categoria. Resolva ou descarte cada um deles para desbloquear a opção.
+</Warning>

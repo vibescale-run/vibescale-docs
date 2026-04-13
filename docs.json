@@ -1,122 +1,197 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+  "name": "VibeScale",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
   },
   "favicon": "/favicon.svg",
+  "theme": "mint",
+  "colors": {
+    "primary": "#7C3AED",
+    "light": "#A78BFA",
+    "dark": "#5B21B6"
+  },
+  "navbar": {
+    "links": [
+      { "label": "Plataforma", "href": "https://app.vibescale.run" }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Acessar plataforma",
+      "href": "https://app.vibescale.run"
+    }
+  },
   "navigation": {
-    "tabs": [
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Dar feedback",
+          "icon": "github",
+          "href": "https://github.com/vibescale-run/vibescale-docs/issues"
+        },
+        {
+          "anchor": "Suporte",
+          "icon": "envelope",
+          "href": "mailto:suporte@vibescale.run"
+        }
+      ]
+    },
+    "languages": [
       {
-        "tab": "Guides",
-        "groups": [
+        "language": "pt-BR",
+        "default": true,
+        "tabs": [
           {
-            "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
+            "tab": "Documentação",
+            "groups": [
+              {
+                "group": "Introdução",
+                "pages": ["index", "primeiros-passos/visao-geral"]
+              },
+              {
+                "group": "Primeiros Passos",
+                "pages": [
+                  "primeiros-passos/criar-app",
+                  "primeiros-passos/conectar-github",
+                  "primeiros-passos/dashboard"
+                ]
+              },
+              {
+                "group": "Análise de Oportunidade",
+                "pages": [
+                  "oportunidade/visao-geral",
+                  "oportunidade/discovery",
+                  "oportunidade/alignment",
+                  "oportunidade/relatorio"
+                ]
+              },
+              {
+                "group": "Segurança",
+                "pages": [
+                  "seguranca/visao-geral",
+                  "seguranca/verificacao",
+                  "seguranca/relatorio",
+                  "seguranca/metodologia"
+                ]
+              },
+              {
+                "group": "Tarefas",
+                "pages": ["tarefas/kanban"]
+              },
+              {
+                "group": "Suporte",
+                "pages": ["suporte/inbox"]
+              },
+              {
+                "group": "Créditos",
+                "pages": ["creditos/carteira"]
+              },
+              {
+                "group": "Changelog",
+                "pages": ["changelog/index"]
+              }
             ]
           },
           {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Referência",
+                "pages": ["api-reference/introducao"]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
-        "groups": [
+        "language": "en",
+        "tabs": [
           {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Introduction",
+                "pages": ["en/index", "en/getting-started/overview"]
+              },
+              {
+                "group": "Getting Started",
+                "pages": [
+                  "en/getting-started/create-app",
+                  "en/getting-started/connect-github",
+                  "en/getting-started/dashboard"
+                ]
+              },
+              {
+                "group": "Opportunity Analysis",
+                "pages": [
+                  "en/opportunity/overview",
+                  "en/opportunity/discovery",
+                  "en/opportunity/alignment",
+                  "en/opportunity/report"
+                ]
+              },
+              {
+                "group": "Security",
+                "pages": [
+                  "en/security/overview",
+                  "en/security/scan",
+                  "en/security/report",
+                  "en/security/methodology"
+                ]
+              },
+              {
+                "group": "Tasks",
+                "pages": ["en/tasks/kanban"]
+              },
+              {
+                "group": "Support",
+                "pages": ["en/support/inbox"]
+              },
+              {
+                "group": "Credits",
+                "pages": ["en/credits/wallet"]
+              },
+              {
+                "group": "Changelog",
+                "pages": ["en/changelog/index"]
+              }
             ]
           },
           {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Reference",
+                "pages": ["en/api-reference/introduction"]
+              }
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
+    ]
+  },
+  "feedback": {
+    "suggestEdit": true,
+    "raiseIssue": true
+  },
+  "integrations": {
+    "posthog": {
+      "apiKey": "phc_NvRCrLgbACvPnPQC1uIyFZEc410esYsKjo1WTNXRmjc",
+      "sessionRecording": false
     }
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+  "seo": {
+    "metatags": {
+      "canonical": "https://docs.vibescale.run"
     }
   },
   "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+    "options": ["copy", "view", "chatgpt", "claude"]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/vibescale"
     }
   }
 }

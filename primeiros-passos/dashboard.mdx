@@ -1,0 +1,50 @@
+---
+title: "Dashboard do app"
+description: "Entenda o hub central do seu app e como acompanhar o progresso das análises."
+icon: "gauge"
+---
+
+O dashboard é o ponto de controle do seu app. A partir dele você inicia análises, acompanha o progresso em tempo real e acessa os resultados de cada etapa.
+
+## Informações do app
+
+No topo do dashboard você encontra o nome e a descrição do app exatamente como foram cadastrados. Esses campos servem de contexto para todos os relatórios gerados.
+
+## Trilhas de análise
+
+O VibeScale organiza a análise em duas trilhas independentes, cada uma com suas próprias etapas e indicadores de status.
+
+<CardGroup cols={2}>
+  <Card title="Oportunidade" icon="chart-line">
+    **Discovery → Alignment → Report**
+
+    Avalia a maturidade do mercado, o alinhamento produto-mercado e gera um relatório com recomendações de posicionamento.
+  </Card>
+  <Card title="Segurança" icon="shield-check">
+    **Code → Deps → Secrets → Runtime**
+
+    Escaneia o código-fonte, as dependências, os segredos expostos e a superfície de ataque em produção.
+  </Card>
+</CardGroup>
+
+## Indicadores de status
+
+Cada etapa de uma trilha exibe um dos seguintes estados:
+
+| Status | Significado |
+|--------|-------------|
+| Pendente | A etapa ainda não foi iniciada. |
+| Em andamento | A análise está sendo executada. |
+| Concluída | Os resultados estão disponíveis. |
+
+## Botões de ação
+
+- **Iniciar análise de oportunidade** — dispara a trilha de Oportunidade completa (Discovery → Alignment → Report).
+- **Iniciar Security Check** — dispara a trilha de Segurança completa (Code → Deps → Secrets → Runtime).
+- **Fazer Re-Check** — executa uma nova verificação de segurança após correções.
+
+## Sistema de gates
+
+<Note>
+  A trilha de **Segurança** só é liberada após a conclusão da análise de Oportunidade. Da mesma forma, o **Re-Check** só fica disponível depois que todas as vulnerabilidades críticas e altas identificadas na verificação anterior forem resolvidas. Esse sequenciamento garante que você atue sobre as informações certas na ordem certa.
+</Note>
