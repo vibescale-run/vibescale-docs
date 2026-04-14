@@ -1,55 +1,61 @@
 ---
-title: "Run a security check"
-description: "How to start the scan, what happens during analysis, and how to navigate to the report when it's done."
+title: "Starting a Security Scan"
+description: "How to start the scan, what happens during the analysis, and how to navigate to the report at the end."
 icon: "shield-check"
 ---
 
 <Warning>
-  The Security Check is only available after the **Opportunity Scale Review** is complete. Finish that step first before proceeding.
+  The Security Scan is only available after completing the **Opportunity Scale Review**. Please finish that step before proceeding.
 </Warning>
 
 ## How to start
 
-You can start the check from two places:
+You can start the scan from two places:
 
-- On the **Security Check** page, click **Start analysis**.
+- On the **Security Check** page, click **Start Scan**.
 - On the main dashboard, click **Start Security Check**.
 
 Both options trigger exactly the same process.
 
-## What happens during analysis
+## What happens during the scan
 
-The check takes approximately **20 seconds** and runs four steps in sequence. You track progress in real time:
+The scan takes about **20 seconds** and runs through four sequential steps. You can follow the progress in real time:
 
 <Steps>
   <Step title="Code Analysis">
-    Examines the repository's source code for insecure patterns, vulnerable logic, and sensitive data exposure.
+    Examines the repository's source code for insecure patterns, vulnerable logic, and exposure of sensitive data.
 
-    Status shown: **Analyzing...** → **Completed**
+    Status shown: **Analyzing...** 12 **Completed**
   </Step>
   <Step title="Dependency Review">
-    Checks all libraries imported by the project — including indirect dependencies — against known vulnerability databases.
+    Checks all libraries imported by the project—including indirect dependencies—against known vulnerability databases.
 
-    Status shown: **Analyzing...** → **Completed**
+    Status shown: **Analyzing...** 12 **Completed**
   </Step>
-  <Step title="Secret Detection">
-    Scans the repository's history and files for credentials, tokens, and API keys accidentally committed.
+  <Step title="Secrets Detection">
+    Scans the repository's history and files for accidentally committed credentials, tokens, and API keys.
 
-    Status shown: **Analyzing...** → **Completed**
+    Status shown: **Analyzing...** 12 **Completed**
   </Step>
   <Step title="Runtime Execution">
-    Evaluates the runtime attack surface: server configurations, HTTP headers, and other risks that manifest in production.
+    Assesses the attack surface at runtime: server configurations, HTTP headers, and other risks that manifest in production.
 
-    Status shown: **Analyzing...** → **Completed**
+    Status shown: **Analyzing...** 12 **Completed**
   </Step>
 </Steps>
 
-A progress bar and overall percentage are displayed throughout the analysis. Previous steps appear as **Completed**; upcoming steps appear as **Waiting...**.
+A progress bar and overall percentage are displayed throughout the scan. Completed steps show as **Completed**; upcoming steps show as **Waiting...**.
 
 ## After completion
 
-When the analysis finishes, you will see **"Security Check Complete!"** and the **View Security Report** button will be enabled.
+When the scan finishes, you will see the message **"Security Check Completed!"** and the **View Security Report** button will be enabled.
 
 <Tip>
-  To run the analysis again after fixing vulnerabilities, use the **Re-Check** — available in the report once all critical and high findings have been resolved or dismissed.
+  To rerun the scan after fixing vulnerabilities, use the **Re-Check** option—available in the report once all critical and high findings are resolved or dismissed.
 </Tip>
+
+## Dispatching deferred security scans
+
+If you start a security scan before data collection and evaluation are complete, the system creates a scan with a pending status (null started_at). Once data collection and evaluation finish, the system automatically detects these pending scans, claims them to avoid duplicate runs, and dispatches the security scan process for execution.
+
+This mechanism ensures that scans started early are processed as soon as data is ready, without duplicate triggers.
