@@ -53,3 +53,9 @@ Quando a análise terminar, você verá a mensagem **"Security Check Concluído!
 <Tip>
   Para executar a análise novamente após corrigir vulnerabilidades, use o **Re-Check** — disponível no relatório assim que todos os achados críticos e altos forem resolvidos ou descartados.
 </Tip>
+
+## Despacho de verificações de segurança adiadas
+
+Se você iniciar uma verificação de segurança antes da conclusão da coleta e avaliação dos dados, o sistema cria uma verificação com o status pendente (started_at nulo). Após a coleta e avaliação serem concluídas, o sistema automaticamente detecta essas verificações pendentes, as reivindica para evitar execuções duplicadas e despacha o processo de verificação de segurança para execução.
+
+Esse mecanismo garante que verificações iniciadas antecipadamente sejam processadas assim que os dados estiverem prontos, sem disparos duplicados.
