@@ -53,3 +53,11 @@ Quando a análise terminar, você verá a mensagem **"Security Check Concluído!
 <Tip>
   Para executar a análise novamente após corrigir vulnerabilidades, use o **Re-Check** — disponível no relatório assim que todos os achados críticos e altos forem resolvidos ou descartados.
 </Tip>
+
+## Resumo executivo gerado por IA
+
+O VibeScale agora pode gerar automaticamente um resumo executivo em português do relatório de segurança, destacando os principais achados e o nível geral de risco. Esta funcionalidade é controlada por uma flag que pode ser ativada ou desativada via ambiente ou controle remoto.
+
+O resumo é gerado após a persistência do relatório e não bloqueia o processo, mesmo em caso de falhas.
+
+Ele aparece no relatório para facilitar a comunicação dos resultados para stakeholders não técnicos.
