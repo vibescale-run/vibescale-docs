@@ -1,11 +1,11 @@
 ---
-title: "Reading the security report"
-description: "How to interpret the grade, finding categories, and severity levels — and how to act on each issue found."
+title: "Reading the Security Report"
+description: "How to interpret the grade, finding categories, and severity levels — and how to act on each identified issue."
 icon: "file-shield"
 ---
 
 {/* screenshot:vibescale-security-report */}
-<Frame caption="VibeScale security report — grade, score, findings by category and remediation actions">
+<Frame caption="VibeScale Security Report — grade, score, findings by category, and remediation actions">
   <img
     src="/images/screenshots/vibescale-security-report.png"
     alt="Security report: grade A, score 98/100"
@@ -13,78 +13,78 @@ icon: "file-shield"
 </Frame>
 
 
-The security report brings together all findings from the analysis into a prioritized view. This page explains each section and the available actions.
+The security report consolidates all findings from the analysis into a prioritized overview. This page explains each section and the available actions.
 
-## Grade and score
+## Grade and Score
 
 The report header displays:
 
-- **Grade letter** — from **A** (best) to **E** (critical):
+- **Grade letter** — from **A** (best) to **E** (critical), with labels in English:
 
 | Grade | Label |
-|-------|-------|
+|-------|--------|
 | A | Excellent |
 | B | Good |
 | C | Acceptable |
-| D | Attention |
+| D | Attention Needed |
 | E | Critical |
 
 - **Numeric score** — from 0 to 100.
-- **Summary** — a sentence reflecting the overall state:
-  - *"X authored items need attention"*
-  - *"Inherited dependencies only — no urgent actions"*
-  - *"No issues detected"*
+- **Summary** — a sentence reflecting the overall status:
+  - *"X custom items need attention"
+  - *"Only inherited dependencies — no urgent actions"
+  - *"No issues detected"
 
 Click the **methodology** link next to the summary to see exactly how the score is calculated.
 
-## Finding categories
+## Finding Categories
 
-Each finding belongs to one of the three categories below. Understanding the difference is the most important step to prioritizing correctly.
+Each finding belongs to one of the three categories below. Understanding the difference is the most important step to prioritize correctly.
 
 <AccordionGroup>
-  <Accordion title="Authored — problems in your code">
-    Vulnerabilities introduced directly by the code your team wrote. **Prioritize these.** They carry maximum weight in the score. If the Authored counter is greater than zero, the score will be significantly affected.
+  <Accordion title="Custom — issues in your own code">
+    Vulnerabilities introduced directly by the code your team wrote. **Prioritize these.** They carry the highest weight in the score. If the Custom count is greater than zero, the score will be significantly affected.
   </Accordion>
-  <Accordion title="Inherited — library vulnerabilities">
-    Flaws in third-party packages your project imports. Worth reviewing — especially critical and high ones — but fixing them requires updating the package version, not changing your own code directly.
+  <Accordion title="Inherited — vulnerabilities in third-party libraries">
+    Flaws in third-party packages your project imports. They deserve review — especially critical and high severity — but fixing them depends on updating the package version, not directly changing your code.
   </Accordion>
-  <Accordion title="Noise — development tools">
-    Findings from packages used only in development that never reach production. **Do not affect your score.** Hidden by default.
+  <Accordion title="Noise — development-only tools">
+    Findings from packages used only during development that never reach production. **They do not affect your score.** They are hidden by default.
 
     To view them, click **"Show X noise items (dev-only)"** at the bottom of the list.
   </Accordion>
 </AccordionGroup>
 
-## Severity levels
+## Severity Levels
 
 Within each category, findings are ordered by severity:
 
 | Severity | Meaning |
-|----------|---------|
+|------------|-------------|
 | **Critical** | Immediate risk of compromise. Fix before anything else. |
 | **High** | Serious risk that should be resolved in the next sprint. |
 | **Medium** | Moderate risk. Plan the fix. |
 | **Low** | Limited impact. Fix when convenient. |
 | **Minimal** | Informational. Very low practical impact. |
 
-## EPSS badges
+## EPSS Badges
 
-Some findings display an additional real exploitation risk badge:
+Some findings display an additional badge indicating real-world exploitation risk:
 
 <CardGroup cols={2}>
-  <Card title="🔴 Active exploitation" icon="fire">
-    **≥ 90th percentile EPSS.** This finding is among the most likely to be exploited in the next 30 days, according to FIRST.org data. Prioritize the fix immediately.
+  <Card title="🔴 Active Exploitation" icon="fire">
+    **≥ 90th percentile of EPSS.** This finding is among the most likely to be exploited in the next 30 days, according to FIRST.org data. Prioritize fixing it immediately.
   </Card>
-  <Card title="🟠 Elevated risk" icon="triangle-exclamation">
-    **Between the 50th and 90th percentile.** Above the industry median. Worth scheduling the fix.
+  <Card title="🟠 Elevated Risk" icon="triangle-exclamation">
+    **Between the 50th and 90th percentile.** Above the industry median. Worth scheduling a fix.
   </Card>
 </CardGroup>
 
 <Note>
-  EPSS measures the **real probability of exploitation**, not just technical severity. A Medium severity finding with an **Active exploitation** badge may be more urgent than a High finding without one.
+  EPSS measures the **actual probability of exploitation**, not just technical severity. A Medium severity finding with an **Active Exploitation** badge may be more urgent than a High severity without a badge.
 </Note>
 
-## Finding details
+## Finding Details
 
 Click any finding to see:
 
@@ -92,35 +92,47 @@ Click any finding to see:
 - Problem description
 - Affected location — file path or module name
 - Code snippet — when available
-- Fix suggestion
-- Classification — Authored / Inherited / Noise
+- Suggested fix
+- Classification — Custom / Inherited / Noise
 
-## Available actions
+## Available Actions
 
-### Mark as resolved
+### Mark as Resolved
 
 Click the checkbox next to a finding to mark it as resolved after applying the fix.
 
-### Create a Kanban task
+### Create a Task in Kanban
 
 Click **Create Task** to send the finding directly to your Kanban board. Priority is mapped automatically:
 
-| Severity | Kanban priority |
-|----------|----------------|
+| Severity | Kanban Priority |
+|------------|----------------|
 | Critical | P1 |
 | High | P2 |
 | Medium | P3 |
 
 After creating the task, a status badge appears on the finding: **To Do / In Progress / In Review / Done**.
 
-### Use the AI fix prompt
+### Use AI Remediation Prompt
 
-Click **AI Agent Fix Prompt** to copy a ready-made remediation prompt to paste into your preferred code assistant — Copilot, Cursor, Bolt, or similar. The prompt already includes the finding's context and fix instructions.
+Click **AI Agent Remediation Prompt** to copy a ready-made remediation prompt to paste into your preferred code assistant — Copilot, Cursor, Bolt, or similar. The prompt already includes the finding context and fix instructions.
 
-## Unlocking Re-Check
+## Unlocking the Re-Check
 
-The **Re-Check** button stays locked until **all Critical and High findings** are marked as resolved or dismissed.
+The **Re-Check** button remains locked until **all Critical and High findings** are marked as resolved or dismissed.
 
 <Warning>
-  Re-Check will not be enabled while there are pending Critical or High findings — regardless of category. Resolve or dismiss each one to unlock the option.
+  Re-Check will not be enabled while any Critical or High findings remain pending — regardless of category. Resolve or dismiss each to unlock the option.
 </Warning>
+
+## Executive Summary
+
+The report now includes an **Executive Summary** block that provides a complete, prioritized narrative of your app’s security status. This summary is highlighted at the top of the page, above the detailed grade, serving as a clear editorial introduction.
+
+If the summary is available, it will be displayed as continuous text. Otherwise, an animated placeholder indicates the content is loading.
+
+This feature is enabled by a specific setting and can be viewed by authorized users.
+
+## Distribution by Track
+
+The category distribution view (Radar Chart) has been adjusted to always appear when sufficient data exists, without being replaced by the Executive Summary. This makes it easier to visually analyze severity and distribution of findings by category.
