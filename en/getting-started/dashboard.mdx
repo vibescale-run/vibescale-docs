@@ -1,59 +1,59 @@
 ---
-title: "App dashboard"
-description: "Understand the central hub for your app and how to track analysis progress."
+title: "App Dashboard"
+description: "Understand your app's central hub and how to track analysis progress."
 icon: "gauge"
 ---
 
 {/* screenshot:vibescale-app-dashboard */}
-<Frame caption="VibeScale app dashboard — control hub with Opportunity and Security analysis tracks">
+<Frame caption="App dashboard in VibeScale — central hub with Opportunity and Security tracks">
   <img
     src="/images/screenshots/vibescale-app-dashboard.png"
-    alt="VibeScale app dashboard — control hub with Opportunity and Security analysis tracks"
+    alt="App dashboard in VibeScale — central hub with Opportunity and Security tracks"
   />
 </Frame>
 
 
-The dashboard is the control center for your app. From here you start analyses, track progress in real time, and access the results of each step.
+The dashboard is your app’s control center. From here, you start analyses, monitor progress in real time, and access results for each stage.
 
-## App information
+## App Information
 
-At the top of the dashboard you'll find the app name and description exactly as they were registered. These fields provide context for all generated reports.
+At the top of the dashboard, you’ll find the app’s name and description exactly as registered. These fields provide context for all generated reports.
 
-## Analysis tracks
+## Analysis Tracks
 
-VibeScale organizes analysis into two independent tracks, each with its own steps and status indicators.
+VibeScale organizes analysis into two independent tracks, each with its own stages and status indicators.
 
 <CardGroup cols={2}>
   <Card title="Opportunity" icon="chart-line">
     **Discovery → Alignment → Report**
 
-    Evaluates market maturity, product-market fit, and generates a report with positioning recommendations.
+    Assesses market maturity, product-market fit, and generates a report with positioning recommendations.
   </Card>
   <Card title="Security" icon="shield-check">
     **Code → Deps → Secrets → Runtime**
 
-    Scans the source code, dependencies, exposed secrets, and the production attack surface.
+    Scans source code, dependencies, exposed secrets, and the attack surface in production.
   </Card>
 </CardGroup>
 
-## Status indicators
+## Status Indicators
 
-Each step in a track displays one of the following states:
+Each stage in a track shows one of the following states:
 
 | Status | Meaning |
 |--------|---------|
-| Pending | The step has not started yet. |
-| In progress | The analysis is running. |
+| Pending | The stage has not started yet. |
+| In Progress | The analysis is currently running. |
 | Completed | Results are available. |
 
-## Action buttons
+## Action Buttons
 
-- **Start opportunity analysis** — triggers the full Opportunity track (Discovery → Alignment → Report).
+- **Start Opportunity Analysis** — triggers the full Opportunity track (Discovery → Alignment → Report).
 - **Start Security Check** — triggers the full Security track (Code → Deps → Secrets → Runtime).
-- **Run Re-Check** — runs a new security check after fixes have been applied.
+- **Run Re-Check** — performs a new security scan after fixes.
 
-## Gate system
+## Gate System
 
 <Note>
-  The **Security** track is only unlocked after the Opportunity analysis is complete. Similarly, the **Re-Check** is only available after all critical and high vulnerabilities identified in the previous check have been resolved. This sequencing ensures you act on the right information in the right order.
+  The **Security** track is only unlocked after completing the **Opportunity Scale Review**. Similarly, the **Re-Check** becomes available only after all critical and high vulnerabilities identified in the previous scan are resolved. This sequencing ensures you act on the right information in the right order.
 </Note>
