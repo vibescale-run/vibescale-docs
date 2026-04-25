@@ -25,13 +25,13 @@ O cabeçalho do relatório exibe:
 |-------|--------|
 | A | Excelente |
 | B | Boa |
-| C | Aceitável |
-| D | Atenção |
-| E | Crítico |
+| C | Atenção |
+| D | Ruim |
+| E | Crítica |
 
 - **Score numérico** — de 0 a 100.
-- **Sumário** — uma frase que reflete o estado geral:
-  - *"X items autorais pedem atenção"*
+- **Sumário** — uma frase que reflete o estado geral, como:
+  - *"X achados no seu código pedem atenção"*
   - *"Apenas dependências herdadas — sem ações urgentes"*
   - *"Nenhum problema detectado"*
 
@@ -65,7 +65,6 @@ Dentro de cada categoria, os achados são ordenados por severidade:
 | **Alto** | Risco sério que deve ser resolvido na próxima sprint. |
 | **Médio** | Risco moderado. Planeje a correção. |
 | **Baixo** | Impacto limitado. Corrija quando conveniente. |
-| **Mínimo** | Informativo. Baixíssimo impacto prático. |
 
 ## Badges de EPSS
 
@@ -103,7 +102,7 @@ Clique no checkbox ao lado do achado para marcá-lo como resolvido após aplicar
 
 ### Criar uma tarefa no Kanban
 
-Clique em **Criar Tarefa** para enviar o achado diretamente para o seu Kanban. A prioridade é mapeada automaticamente:
+Clique em **Gerar task(s)** para enviar o achado diretamente para o seu Kanban. A prioridade é mapeada automaticamente:
 
 | Severidade | Prioridade no Kanban |
 |------------|----------------------|
@@ -115,7 +114,7 @@ Após criar a tarefa, um badge de status aparece no achado: **A Fazer / Em Progr
 
 ### Usar o prompt de correção com IA
 
-Clique em **Prompt de Correção para Agente de IA** para copiar um prompt de remediação pronto para colar no seu assistente de código preferido — Copilot, Cursor, Bolt ou similar. O prompt já inclui o contexto do achado e as instruções de correção.
+Clique em **Copiar prompt** para copiar um prompt de remediação pronto para colar no seu assistente de código preferido — Copilot, Cursor, Bolt ou similar. O prompt já inclui o contexto do achado e as instruções de correção.
 
 ## Desbloqueando o Re-Check
 
