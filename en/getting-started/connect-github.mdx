@@ -4,23 +4,27 @@ description: "How to authorize VibeScale to access your repository to run analys
 icon: "github"
 ---
 
-The GitHub connection is required for VibeScale to scan the source code, dependencies, and check for exposed secrets in the repository. Without this connection, security analyses cannot be run.
+Connecting to GitHub is necessary for VibeScale to scan the source code, dependencies, and check for exposed secrets in the repository. Without this connection, security analyses cannot be performed.
 
 <Steps>
   <Step title="Start the connection">
     In the app creation wizard, click **Connect GitHub**. You will be redirected to GitHub's authorization screen.
   </Step>
   <Step title="Authorize VibeScale">
-    On the GitHub screen, review the requested permissions and click **Authorize**. VibeScale requests read-only permissions — no writes are made to your repository.
+    On the GitHub screen, review the requested permissions and click **Authorize**. VibeScale only requests read permissions — no write access is made to your repository.
   </Step>
   <Step title="Select the repository">
     After returning to the platform, use the dropdown to find and select the correct repository. You can type to filter the list if you have many repositories.
   </Step>
   <Step title="Confirm the installation">
-    The platform verifies that repository access is active. Once confirmed, the app advances to the URL validation step and then to the dashboard.
+    The platform verifies that repository access is active. Once confirmed, the app proceeds to the URL validation step, then to the dashboard.
   </Step>
 </Steps>
 
 <Tip>
-  You can update the connected repository at any time directly from the app dashboard, without needing to recreate the app from scratch.
+  You can update the connected repository anytime directly from the app dashboard, without needing to recreate the app from scratch.
 </Tip>
+
+<Note>
+  VibeScale now includes an additional check when reconnecting a repository to ensure it is the same codebase originally analyzed. If you try to connect a different repository, an alert will block the action, offering options to cancel or create a new app for the different repository.
+</Note>
