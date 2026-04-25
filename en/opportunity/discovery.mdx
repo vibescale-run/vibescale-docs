@@ -1,61 +1,61 @@
 ---
 title: "Discovery"
-description: "The platform automatically analyzes your repository and builds a panel with key product data."
+description: "The platform automatically analyzes your repository and builds a dashboard with your product's key data."
 icon: "magnifying-glass"
 ---
 
-Discovery is the first step of the opportunity pipeline. As soon as you connect your GitHub repository, the platform starts the analysis automatically — no additional configuration required.
+Discovery is the first step in the opportunity pipeline. Once you connect your GitHub repository, the platform starts the analysis automatically — no additional setup required.
 
 ## What happens during the analysis
 
-VibeScale examines the code, structure, and metadata of the repository to infer your product's profile. While the analysis runs, the panel displays **"Analyzing your app..."** — this is normal and usually takes a few minutes.
+VibeScale examines the code, structure, and metadata of the repository to infer your product's profile. While the analysis runs, the dashboard shows **"Analyzing your app..."** — this is normal and usually takes a few minutes.
 
-You don't need to do anything at this point. You can leave the page open or come back later — the result is saved on the panel.
+You don't need to do anything at this point. You can leave the page open or come back later — the result is saved on the dashboard.
 
 ## What is displayed after Discovery
 
-When the analysis finishes, the panel shows a set of automatically inferred fields:
+When the analysis finishes, the dashboard shows a set of automatically inferred fields:
 
 <CardGroup cols={2}>
-  <Card title="App category" icon="tag">
+  <Card title="App Category" icon="tag">
     The market segment your app fits into (e.g., productivity, fintech, health).
   </Card>
-  <Card title="Target audience" icon="users">
+  <Card title="Target Audience" icon="users">
     Who the app was built for — user profile or customer segment.
   </Card>
-  <Card title="Problem solved" icon="triangle-exclamation">
+  <Card title="Problem Solved" icon="triangle-exclamation">
     The main pain point the app addresses, identified from the code and product structure.
   </Card>
   <Card title="Differentiator" icon="star">
-    What makes your app distinct from existing alternatives.
+    What makes your app stand out from existing alternatives.
   </Card>
   <Card title="Wow Moment" icon="bolt">
     The moment when the user first realizes the real value of the product.
   </Card>
-  <Card title="Use case" icon="list-check">
-    The concrete scenario in which the app is used and delivers the most value.
+  <Card title="Use Case" icon="list-check">
+    The concrete scenario where the app is used and delivers the most value.
   </Card>
-  <Card title="Core feature" icon="puzzle-piece">
-    The central feature that sustains the app's value proposition.
+  <Card title="Main Feature" icon="puzzle-piece">
+    The central feature that supports the app's value proposition.
   </Card>
   <Card title="Competitors" icon="chart-bar">
     Products or alternative solutions competing in the same market space.
   </Card>
 </CardGroup>
 
-In addition to these fields, the panel also displays:
+In addition to these fields, the dashboard also shows:
 
-- **Detected features** — tags with features identified in the repository
-- **Confidence score** — a bar indicating how solid the inferences are, based on the repository's completeness and clarity
-- **Tech stack** — languages, frameworks, and tools detected
-- **Routes and endpoints** — mapping of routes or endpoints found in the code
+- **Detected Features** — tags with features identified in the repository
+- **Confidence Score** — a bar indicating how solid the inferences are, based on repository completeness and clarity
+- **Tech Stack** — detected languages, frameworks, and tools
+- **Routes and Endpoints** — mapping of routes or endpoints found in the code
 
-## Data origin: web search vs. AI inference
+## Data sources: web research vs. AI inference
 
 <Note>
   Some fields, especially **Competitors**, indicate the source of the information:
 
-  - **via web search** — data obtained through active search from external sources
+  - **via web research** — data obtained through active search in external sources
   - **via AI inference** — data deduced from the code and repository structure
 
   This distinction helps you assess the reliability of each field before confirming it in the Alignment step.
@@ -64,17 +64,17 @@ In addition to these fields, the panel also displays:
 ## What to do if the analysis takes too long
 
 <AccordionGroup>
-  <Accordion title="The panel shows 'Still processing...'">
-    Larger repositories or those with more complex structures may take longer to analyze. Wait a few minutes and reload the page — the result is automatically saved as soon as the analysis finishes.
+  <Accordion title="The dashboard shows 'Still processing...'">
+    Larger repositories or those with more complex structures may take longer to analyze. Please wait a few minutes and reload the page — the result is saved automatically as soon as the analysis finishes.
   </Accordion>
-  <Accordion title="Status stays 'In Progress' for a long time">
-    If after 10 minutes the status is still **In Progress**, check that the connected repository is accessible and has meaningful code. Contact support if the issue persists.
+  <Accordion title="The status remains 'In Progress' for a long time">
+    If after 10 minutes the status is still **In Progress**, check if the connected repository is accessible and contains significant code. Contact support if the problem persists.
   </Accordion>
-  <Accordion title="Status changed to 'Failed'">
-    Click **Run again** on the panel to restart Discovery. If the error persists, contact support with the repository name and the time of the attempt.
+  <Accordion title="The status changed to 'Failed'">
+    Click **Run again** on the dashboard to restart Discovery. If the error continues, contact support with the repository name and the time of the attempt.
   </Accordion>
 </AccordionGroup>
 
 ## Next step
 
-When Discovery is **Completed**, proceed to the [Alignment](/en/opportunity/alignment) step.
+When Discovery is **Completed**, proceed to the [Alignment](/en/opportunity/alignment).
