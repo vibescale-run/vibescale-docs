@@ -1,29 +1,29 @@
 ---
-title: "Run a security check"
-description: "How to start the scan, what happens during analysis, and how to navigate to the report when it's done."
+title: "Starting a Security Scan"
+description: "How to start the scan, what happens during the analysis, and how to navigate to the report afterward."
 icon: "shield-check"
 ---
 
 <Warning>
-  The Security Check is only available after the **Opportunity Scale Review** is complete. Finish that step first before proceeding.
+  The Security Scan is only available after completing the **Opportunity Scale Review**. Please finish that step before proceeding.
 </Warning>
 
 ## How to start
 
-You can start the check from two places:
+You can start the scan from two places:
 
-- On the **Security Check** page, click **Start analysis**.
+- On the **Security Check** page, click **Start Scan**.
 - On the main dashboard, click **Start Security Check**.
 
-Both options trigger exactly the same process.
+Both options trigger the exact same process.
 
-## What happens during analysis
+## What happens during the analysis
 
-The check takes approximately **20 seconds** and runs four steps in sequence. You track progress in real time:
+The scan takes about **20 seconds** and runs through four steps sequentially. You can follow the progress in real time:
 
 <Steps>
   <Step title="Code Analysis">
-    Examines the repository's source code for insecure patterns, vulnerable logic, and sensitive data exposure.
+    Examines the repository's source code for insecure patterns, vulnerable logic, and exposure of sensitive data.
 
     Status shown: **Analyzing...** → **Completed**
   </Step>
@@ -32,24 +32,30 @@ The check takes approximately **20 seconds** and runs four steps in sequence. Yo
 
     Status shown: **Analyzing...** → **Completed**
   </Step>
-  <Step title="Secret Detection">
-    Scans the repository's history and files for credentials, tokens, and API keys accidentally committed.
+  <Step title="Secrets Detection">
+    Scans the repository’s history and files for accidentally committed credentials, tokens, and API keys.
 
     Status shown: **Analyzing...** → **Completed**
   </Step>
   <Step title="Runtime Execution">
-    Evaluates the runtime attack surface: server configurations, HTTP headers, and other risks that manifest in production.
+    Assesses the attack surface at runtime: server configurations, HTTP headers, and other risks that appear in production.
 
     Status shown: **Analyzing...** → **Completed**
   </Step>
 </Steps>
 
-A progress bar and overall percentage are displayed throughout the analysis. Previous steps appear as **Completed**; upcoming steps appear as **Waiting...**.
+A progress bar and overall percentage are displayed throughout the scan. Completed steps show as **Completed**; upcoming steps show as **Waiting...**.
 
 ## After completion
 
-When the analysis finishes, you will see **"Security Check Complete!"** and the **View Security Report** button will be enabled.
+When the scan finishes, you’ll see the message **"Security Check Completed!"** and the **View Security Report** button will be enabled.
 
 <Tip>
-  To run the analysis again after fixing vulnerabilities, use the **Re-Check** — available in the report once all critical and high findings have been resolved or dismissed.
+  To run the scan again after fixing vulnerabilities, use the **Re-Check** — available in the report once all critical and high findings are resolved or dismissed.
 </Tip>
+
+## Temporary scan failure
+
+If the scan fails due to a temporary GitHub Actions outage, an alert message will inform you of the temporary failure.
+
+You can retry the scan by clicking the **Try Again** button that reappears on the screen. The system preserves the original scan type to ensure the process continues correctly.
