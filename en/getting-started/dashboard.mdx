@@ -5,19 +5,19 @@ icon: "gauge"
 ---
 
 {/* screenshot:vibescale-app-dashboard */}
-<Frame caption="App dashboard in VibeScale — central hub with Opportunity and Security tracks">
+<Frame caption="VibeScale app dashboard — central hub with Opportunity and Security tracks">
   <img
     src="/images/screenshots/vibescale-app-dashboard.png"
-    alt="App dashboard in VibeScale — central hub with Opportunity and Security tracks"
+    alt="VibeScale app dashboard — central hub with Opportunity and Security tracks"
   />
 </Frame>
 
 
-The dashboard is your app’s control center. From here, you start analyses, monitor progress in real time, and access the results of each stage.
+The dashboard is your app’s control center. From here, you start analyses, monitor progress in real time, and access results for each stage.
 
 ## App Information
 
-At the top of the dashboard, you’ll find the app’s name and description exactly as registered. These fields provide context for all generated reports.
+At the top of the dashboard, you’ll find the app’s name and description exactly as entered. These fields provide context for all generated reports.
 
 ## Analysis Tracks
 
@@ -51,14 +51,16 @@ Each stage in a track shows one of the following states:
 - **Start Opportunity Analysis** — triggers the full Opportunity track (Discovery → Alignment → Report).
 - **Start Security Check** — triggers the full Security track (Code → Deps → Secrets → Runtime).
 - **Run Re-Check** — performs a new security scan after fixes.
-- **Run New Review** — starts a new Opportunity Scale Review cycle, with protection against parallel runs to avoid duplication.
+- **Run New Review** — starts a new Opportunity Scale Review cycle, with protection against parallel runs to avoid duplicates.
 
 ## Gate System
 
 <Note>
-  The **Security** track is only unlocked after completing the Opportunity analysis. Similarly, the **Re-Check** becomes available only after all critical and high vulnerabilities identified in the previous scan are resolved. This sequencing ensures you act on the right information in the right order.
+  The **Security** track is only unlocked after completing the Opportunity analysis. Similarly, the **Re-Check** is only available once all critical and high vulnerabilities from the previous scan are resolved. This sequencing ensures you act on the right information in the right order.
 </Note>
 
 ## Welcome and Onboarding
 
-When you access the dashboard, you may see a welcome banner that helps you start your app’s alignment flow. Just click to begin the Opportunity Scale Review analysis and follow the recommended steps.
+When you access the dashboard, you may see a welcome banner that helps you start your app’s alignment flow. Just click to begin the Opportunity Scale Review and follow the recommended steps.
+
+Additionally, the system now automatically marks onboarding as complete the first time you view an opportunity report with status "completed" or "closed." This means onboarding is considered finished when you actually experience the platform’s first deliverable, not just when you finish the initial wizard.
