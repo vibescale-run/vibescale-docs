@@ -1,0 +1,84 @@
+---
+title: "Scalability — Overview"
+description: "Understand how VibeScale projects your app's capacity ceiling against your growth target — combining web performance, architecture, and third-party API limits."
+icon: "gauge"
+---
+
+The Scalability analysis takes your app at its current state, projects consumption up to your user target, and answers a direct question: **does your architecture hold up?**
+
+Unlike the security analysis, this stage is driven by **user count**. You tell us where you are today and where you want to be in 6 months — VibeScale translates that into three concrete answers: web vitals, capacity ceiling, and API limits.
+
+## What's analyzed
+
+<CardGroup cols={3}>
+  <Card title="Performance" icon="gauge">
+    Web Vitals (LCP, INP, CLS) and JavaScript bundle size. Measures what the user feels when opening your app.
+  </Card>
+  <Card title="Coupling" icon="layers">
+    Architecture and code structure analysis. Identifies points where growth will amplify technical debt.
+  </Card>
+  <Card title="Data" icon="database">
+    How data flows and where it lives. Evaluates whether your data layer survives the target without refactoring.
+  </Card>
+</CardGroup>
+
+Each dimension gets an independent score — you see exactly where the app is strong and where it needs attention before scaling.
+
+## Capacity ceiling
+
+The headline output of this stage is the **capacity ceiling**: a user count above which your app starts to feel real pressure, computed from the limits of the APIs and services your app consumes.
+
+<Note>
+  The ceiling isn't where your app breaks — it's where you start to feel it. That's why we apply a **10%** safety margin on top of the tightest limit across all detected APIs.
+</Note>
+
+When the ceiling is greater than your target, the report shows **"Holds the target"**. When it's lower, the report points to the exact API or service that is the **bottleneck** and at which tier — so you can decide between upgrading the plan, switching providers, or refactoring consumption.
+
+## Third-party APIs
+
+Almost every modern app depends on external APIs (auth, email, AI, managed databases). Each has limits that vary by **plan tier** — and those limits surface on the bill at the worst possible moment.
+
+The Scalability analysis automatically detects the APIs your app uses, asks which tier you contracted on each, and projects consumption against your target. For each API, you see:
+
+- **Status now** — where you are today (green, yellow, red).
+- **Status at target** — where you'll be at the 6-month target.
+- **Projected usage** — absolute number vs. the contracted limit.
+
+## The full flow
+
+The analysis is split into four steps. The two middle ones are **interactive wizards** — the report only finalizes after you confirm the data.
+
+<Steps>
+  <Step title="Check">
+    You enter how many users you have today and the 6-month target. VibeScale runs the technical analysis in ~1 minute.
+  </Step>
+  <Step title="Plan Review">
+    The analyzer shows every API it detected and asks you to confirm the tier. APIs it missed, you add.
+  </Step>
+  <Step title="Tune Assumptions">
+    You refine (or accept) the default per-user-per-day usage estimates for each API.
+  </Step>
+  <Step title="Report">
+    VibeScale applies your confirmed inputs, computes the ceiling, and shows the full report.
+  </Step>
+</Steps>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Start an analysis" icon="play" href="/en/scalability/check">
+    How to kick off the analysis and what to expect during the run.
+  </Card>
+  <Card title="Plan Review" icon="list-checks" href="/en/scalability/plan-review">
+    The wizard that confirms the real tier of each API you use.
+  </Card>
+  <Card title="Tune Assumptions" icon="sliders" href="/en/scalability/tune-assumptions">
+    How to refine consumption estimates per user.
+  </Card>
+  <Card title="Reading the report" icon="file-chart-column" href="/en/scalability/report">
+    Subscores, capacity ceiling, bottleneck, and the Actions tab.
+  </Card>
+  <Card title="Methodology" icon="book-open" href="/en/scalability/methodology">
+    How the ceiling is computed, what the safety margin is, and why only one bottleneck matters.
+  </Card>
+</CardGroup>

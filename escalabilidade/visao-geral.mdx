@@ -1,0 +1,84 @@
+---
+title: "Visão geral — Escalabilidade"
+description: "Entenda como o VibeScale projeta o teto de capacidade do seu app contra a sua meta de crescimento — combinando performance web, arquitetura e limites de APIs de terceiros."
+icon: "gauge"
+---
+
+A análise de Escalabilidade pega o seu app no estado atual, projeta o consumo até a sua meta de usuários, e responde a uma pergunta direta: **a sua arquitetura aguenta?**
+
+Diferente da análise de segurança, esta etapa é orientada por **número de usuários**. Você informa onde está hoje e onde quer estar em 6 meses — e o VibeScale traduz isso em três respostas concretas: web vitals, teto de capacidade e limites de APIs.
+
+## O que é analisado
+
+<CardGroup cols={3}>
+  <Card title="Performance" icon="gauge">
+    Métricas Web Vitals (LCP, INP, CLS) e tamanho do bundle JavaScript. Mede o que o usuário sente ao abrir o seu app.
+  </Card>
+  <Card title="Acoplamento" icon="layers">
+    Análise de arquitetura e estrutura do código. Identifica pontos onde o crescimento vai amplificar dívida técnica.
+  </Card>
+  <Card title="Dados" icon="database">
+    Como os dados fluem e onde estão. Avalia se a sua camada de dados aguenta a meta sem refatoração.
+  </Card>
+</CardGroup>
+
+Cada dimensão recebe uma pontuação independente — você vê exatamente onde o app está forte e onde precisa de atenção antes de escalar.
+
+## Teto de capacidade
+
+A novidade desta etapa é o **teto de capacidade**: um número de usuários a partir do qual o seu app começa a sentir pressão real, calculado a partir dos limites das APIs e serviços que o seu app consome.
+
+<Note>
+  O teto não é o ponto onde o seu app quebra — é o ponto onde você começa a sentir. Por isso aplicamos uma margem de segurança de **10%** sobre o limite mais apertado entre todas as APIs detectadas.
+</Note>
+
+Quando o teto é maior que a sua meta, o relatório mostra **"Aguenta a meta"**. Quando é menor, o relatório aponta exatamente qual API ou serviço é o **gargalo** e em que tier — para que você possa decidir entre fazer upgrade do plano, trocar o serviço ou refatorar o consumo.
+
+## APIs de terceiros
+
+Quase todo app moderno depende de APIs externas (autenticação, e-mail, IA, banco de dados gerenciado). Cada uma tem limites que variam por **tier de plano** — e esses limites aparecem na fatura no momento mais inconveniente.
+
+A análise de Escalabilidade detecta automaticamente as APIs que o seu app usa, pergunta qual tier você contratou em cada uma, e projeta o consumo na sua meta. Para cada API, você vê:
+
+- **Status agora** — onde está hoje (verde, amarelo, vermelho).
+- **Status na meta** — onde estará na meta de 6 meses.
+- **Consumo projetado** — número absoluto vs. o limite contratado.
+
+## O fluxo completo
+
+A análise é dividida em quatro etapas. As duas do meio são **assistentes interativos** — o relatório só fica pronto depois que você confirma os dados.
+
+<Steps>
+  <Step title="Verificação">
+    Você informa quantos usuários tem hoje e a meta para 6 meses. O VibeScale executa a análise técnica em ~1 minuto.
+  </Step>
+  <Step title="Revisão de Planos">
+    O analisador mostra cada API que detectou e pede que você confirme o tier. APIs que ele não pegou, você adiciona.
+  </Step>
+  <Step title="Ajuste de Premissas">
+    Você refina (ou aceita) as estimativas padrão de uso por usuário por dia para cada API.
+  </Step>
+  <Step title="Relatório">
+    O VibeScale aplica os seus dados confirmados, calcula o teto e exibe o relatório completo.
+  </Step>
+</Steps>
+
+## Próximos passos
+
+<CardGroup cols={2}>
+  <Card title="Iniciar uma análise" icon="play" href="/escalabilidade/verificacao">
+    Como disparar a análise e o que esperar durante a execução.
+  </Card>
+  <Card title="Revisão de Planos" icon="list-checks" href="/escalabilidade/revisao-de-planos">
+    O assistente que confirma o tier real de cada API que você usa.
+  </Card>
+  <Card title="Ajuste de Premissas" icon="sliders" href="/escalabilidade/ajuste-de-premissas">
+    Como refinar as estimativas de consumo por usuário.
+  </Card>
+  <Card title="Lendo o relatório" icon="file-chart-column" href="/escalabilidade/relatorio">
+    Subscores, teto de capacidade, gargalo e a aba de Ações.
+  </Card>
+  <Card title="Metodologia" icon="book-open" href="/escalabilidade/metodologia">
+    Como o teto é calculado, o que é margem de segurança e por que apenas um gargalo importa.
+  </Card>
+</CardGroup>

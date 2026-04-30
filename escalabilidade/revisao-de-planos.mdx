@@ -1,0 +1,70 @@
+---
+title: "Revisão de Planos"
+description: "O assistente que confirma o tier real de cada API que o seu app usa — e onde você adiciona APIs que o analisador não detectou."
+icon: "list-checks"
+---
+
+A Revisão de Planos abre automaticamente assim que a análise técnica termina. Ela existe porque o teto de capacidade do seu app depende **diretamente** dos limites do tier que você contratou em cada API — e o analisador não tem como saber isso sem perguntar.
+
+<Note>
+  Esta etapa é obrigatória. O relatório só é gerado depois que você clica em **Confirmar**. Você pode pular APIs que não usa, mas precisa confirmar pelo menos uma vez.
+</Note>
+
+## Por que existe
+
+Quando o analisador detecta que o seu app usa, por exemplo, **Supabase** ou **OpenAI**, ele precisa saber se você está no plano gratuito, no plano pago básico ou em um tier mais alto. Cada plano tem limites diferentes — e usar o tier errado nas projeções produziria um teto irreal.
+
+Como o tier de cada serviço é informação privada da sua conta, **só você sabe**. A Revisão de Planos é o lugar onde essa informação entra no cálculo.
+
+## Como funciona
+
+O assistente lista cada API detectada com:
+
+- **Nome da API** — ex.: `Supabase`, `OpenAI`, `Mailgun`.
+- **Categoria** — backend gerenciado, IA, e-mail transacional, etc.
+- **Tier sugerido** — o palpite do analisador (geralmente o tier mais barato).
+- **Combobox de tier** — opções extraídas do catálogo público de cada serviço.
+
+Para cada linha, escolha o tier que você realmente contratou. Se a opção exata não aparecer, escolha a mais próxima — você pode editar depois.
+
+## Adicionando APIs que faltaram
+
+Nem toda API é detectável automaticamente. APIs chamadas indiretamente, ou que você integrou recentemente sem deixar pistas no código, podem passar despercebidas.
+
+Para incluí-las no cálculo:
+
+<Steps>
+  <Step title="Clique em Adicionar API">
+    O botão fica abaixo da lista de APIs detectadas.
+  </Step>
+  <Step title="Informe nome e (opcional) URL da documentação">
+    O VibeScale tenta buscar os planos automaticamente — preenche os detalhes para você revisar e confirmar.
+  </Step>
+  <Step title="Revise os dados pré-preenchidos">
+    Confira nome, categoria e tiers disponíveis. Se o auto-preenchimento falhou, você pode preencher manualmente.
+  </Step>
+  <Step title="Escolha o tier que você usa">
+    Mesma lógica das APIs detectadas — selecione o seu tier e adicione à lista.
+  </Step>
+</Steps>
+
+<Tip>
+  Quanto mais APIs você incluir, mais preciso fica o teto de capacidade. Vale a pena incluir até serviços com limites altos — eles raramente são gargalo, mas o cálculo do teto considera todos os candidatos para escolher o mais apertado.
+</Tip>
+
+## Confirmar
+
+Quando todos os tiers estiverem revisados, clique em **Confirmar**. O VibeScale aplica os seus tiers escolhidos, recalcula as projeções de cada API contra a sua meta de usuários, e te leva para o **Ajuste de Premissas** — a etapa final antes do relatório.
+
+## Erros comuns
+
+| Mensagem | O que aconteceu | O que fazer |
+|----------|-----------------|-------------|
+| *Não foi possível buscar dados da API* | O auto-preenchimento ao adicionar uma API falhou. | Preencha manualmente — nome, categoria e tier mínimo bastam. |
+| *Não foi possível salvar* | Falha de rede ou validação do servidor. | Tente novamente. Se persistir, recarregue a página — o seu progresso é salvo. |
+
+## Próximo passo
+
+<Card title="Ajuste de Premissas" icon="sliders" href="/escalabilidade/ajuste-de-premissas">
+  Refine ou aceite as estimativas padrão de uso por usuário antes de ver o relatório.
+</Card>

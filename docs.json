@@ -65,6 +65,17 @@
                 ]
               },
               {
+                "group": "Escalabilidade",
+                "pages": [
+                  "escalabilidade/visao-geral",
+                  "escalabilidade/verificacao",
+                  "escalabilidade/revisao-de-planos",
+                  "escalabilidade/ajuste-de-premissas",
+                  "escalabilidade/relatorio",
+                  "escalabilidade/metodologia"
+                ]
+              },
+              {
                 "group": "Tarefas",
                 "pages": [
                   "tarefas/kanban"
@@ -131,6 +142,17 @@
                   "en/security/scan",
                   "en/security/report",
                   "en/security/methodology"
+                ]
+              },
+              {
+                "group": "Scalability",
+                "pages": [
+                  "en/scalability/overview",
+                  "en/scalability/check",
+                  "en/scalability/plan-review",
+                  "en/scalability/tune-assumptions",
+                  "en/scalability/report",
+                  "en/scalability/methodology"
                 ]
               },
               {

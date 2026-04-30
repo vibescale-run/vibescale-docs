@@ -1,0 +1,98 @@
+---
+title: "Reading the Scalability report"
+description: "How to interpret the subscores, the capacity ceiling, third-party API limits, and the Findings, Gaps, and Actions tabs."
+icon: "file-chart-column"
+---
+
+The report is split into four blocks that answer progressively more specific questions: **am I OK today?**, **do I hold the target?**, **where's the bottleneck?**, **what do I do now?**.
+
+## Header — three subscores
+
+At the top of the report, three scores summarize the app's current state:
+
+| Subscore | What it measures |
+|----------|------------------|
+| **Performance** | Web Vitals (LCP, INP, CLS) and bundle size. What the user feels on app open. |
+| **Coupling** | Code structure and points where growth amplifies technical debt. |
+| **Data** | How data flows and whether the layer survives the target without refactoring. |
+
+Each subscore is a number from 0 to 100. A badge next to the title shows the current and target user counts — something like **"1,500 now → 5,000 at target"**.
+
+## Web Vitals metrics
+
+Right below the subscores, a row with the numeric values feeding the Performance subscore:
+
+- **LCP** (Largest Contentful Paint) in milliseconds — time until the main content appears.
+- **INP** (Interaction to Next Paint) in milliseconds — responsiveness to clicks and taps.
+- **CLS** (Cumulative Layout Shift) — how much the layout jumps during load.
+- **Bundle** — JavaScript size in KB.
+
+These are the same values tools like Lighthouse and PageSpeed Insights use — the difference is they come paired here with LLM-contextualized analysis under the Findings/Actions tabs.
+
+## Capacity timeline
+
+This is where you find out whether your app holds the target. It renders a timeline with three markers:
+
+- **Where you are today** (current users).
+- **Where you want to be** (6-month target).
+- **Capacity ceiling** — the point above which you start feeling pressure.
+
+When the ceiling sits to the right of the target, the header reads **"Holds the target"**. When it's to the left, it reads **"Doesn't hold the target"** and the report highlights the bottleneck right below.
+
+<Note>
+  The ceiling embeds a 10% safety margin — hitting it doesn't mean your app falls over, it means you'll start to notice slowness, intermittent errors, or bills growing faster than expected. It's the signal that it's time to revisit architecture or plan tiers.
+</Note>
+
+The section only renders when the pipeline could compute a numeric ceiling. If the ceiling is unknown (data missing for some service), the timeline is omitted and the report continues normally to the other sections.
+
+## Third-party API limits
+
+Detailed table with each API that entered the calculation. For each row:
+
+| Column | What it shows |
+|--------|---------------|
+| **API** | Service name + tier you confirmed in Plan Review. |
+| **Constraint** | Which specific limit of that tier is being evaluated (e.g. requests/hour, MAU, tokens/month). |
+| **Status now** | Green / yellow / red — where you are today against the limit. |
+| **Status at target** | Same, projected at the 6-month target. |
+| **Projected usage** | Absolute number at target vs. the contracted limit. |
+
+<AccordionGroup>
+  <Accordion title="Green — Comfortable">
+    Projected usage is below 50% of the limit. No pressure on this tier.
+  </Accordion>
+  <Accordion title="Yellow — Watch">
+    Projected usage is between 50% and 90% of the limit. Worth planning an upgrade or mitigation before you hit it.
+  </Accordion>
+  <Accordion title="Red — Critical">
+    Projected usage is above 90% of the limit. This API is a bottleneck candidate — start with a tier upgrade or provider switch.
+  </Accordion>
+</AccordionGroup>
+
+## Findings, Gaps, and Actions
+
+Three tabs at the bottom of the report:
+
+<CardGroup cols={3}>
+  <Card title="Findings" icon="triangle-alert">
+    Concrete issues found during analysis. Each finding has severity, description, and context.
+  </Card>
+  <Card title="Gaps" icon="lightbulb">
+    Structural gaps — things that are missing or off-pattern and may turn into problems at scale.
+  </Card>
+  <Card title="Actions" icon="list-todo">
+    Prioritized suggestions of what to do now. Each action points to the finding or gap it addresses.
+  </Card>
+</CardGroup>
+
+The **Actions** tab is the starting point for refactors. Actions are ordered by combined ceiling impact and estimated effort — start with the first ones.
+
+<Tip>
+  You can mark actions as done inside the portal and run another analysis later to validate the ceiling went up.
+</Tip>
+
+## Next step
+
+<Card title="Methodology" icon="book-open" href="/en/scalability/methodology">
+  See exactly how the ceiling is computed and why only one bottleneck matters.
+</Card>

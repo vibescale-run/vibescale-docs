@@ -1,0 +1,69 @@
+---
+title: "Start a Scalability analysis"
+description: "How to kick off the analysis, what info is asked at the start, and what to expect during the run."
+icon: "play"
+---
+
+<Warning>
+  The Scalability analysis only becomes available after the **Security Check** completes. Finish the security cycle before proceeding.
+</Warning>
+
+## How to start
+
+Open the **Scalability Check** page for your app and fill the kickoff form:
+
+| Field | What to enter |
+|-------|---------------|
+| **How many users today?** | Approximate number of currently active users. Zero is allowed — useful for pre-launch apps. |
+| **6-month target?** | How many users you expect 6 months from now. Must be greater than or equal to the current count. |
+
+Both fields accept numbers up to **10,000,000**. If you don't have a clear target yet, project doubling or tripling the current base — you can run a new analysis later with different numbers.
+
+Click **Start analysis** to begin.
+
+## What happens during the analysis
+
+The run takes about **1 minute** and executes three tracks in parallel:
+
+<Steps>
+  <Step title="Performance">
+    Collects Web Vitals (LCP, INP, CLS) and bundle size through a controlled execution of your app.
+  </Step>
+  <Step title="Coupling">
+    Evaluates code architecture — where coupling points will make growth harder.
+  </Step>
+  <Step title="Data">
+    Maps data flow and identifies patterns that may bottleneck as the user base grows.
+  </Step>
+</Steps>
+
+In parallel, the analyzer also detects the **third-party APIs** your app consumes to prepare the next step (Plan Review).
+
+The progress bar shows the overall percentage. When all subscores are computed, you're automatically redirected to the Plan Review wizard.
+
+## Possible statuses
+
+| Status | Meaning |
+|--------|---------|
+| **Running** | The analysis is in progress — wait for the redirect. |
+| **Analysis failed** | Something went wrong. Use the **Reload** button or start a new analysis. If it persists, verify the app URL is reachable. |
+| **Analysis complete** | The analysis finished successfully. You're taken straight to Plan Review. |
+
+## After the technical analysis
+
+When the technical analysis ends, **the report is not ready yet**. The next two steps ask for your confirmation so the report numbers reflect your reality — not the analyzer's guesses.
+
+<Tip>
+  If you closed the browser mid-flow, just go back to your app — the portal takes you straight to where you left off (Plan Review or Tune Assumptions).
+</Tip>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Plan Review" icon="list-checks" href="/en/scalability/plan-review">
+    Confirm the real tier of each API your app uses.
+  </Card>
+  <Card title="Tune Assumptions" icon="sliders" href="/en/scalability/tune-assumptions">
+    Refine consumption estimates per user before seeing the report.
+  </Card>
+</CardGroup>

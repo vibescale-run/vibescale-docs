@@ -1,0 +1,61 @@
+---
+title: "Ajuste de Premissas"
+description: "Refine — ou aceite — as estimativas padrão de uso por usuário por dia para cada API antes de ver o relatório de escalabilidade."
+icon: "sliders"
+---
+
+O Ajuste de Premissas é o último passo antes do relatório. Ele aparece logo depois da Revisão de Planos.
+
+## Por que existe
+
+Para projetar consumo na sua meta, o VibeScale precisa saber **quanto cada usuário consome de cada API por dia**. Os valores padrão vêm de benchmarks públicos — são razoáveis para a maioria dos apps, mas podem estar muito acima ou muito abaixo do que o seu produto realmente faz.
+
+Um exemplo: a estimativa padrão para uma API de IA pode assumir 5 chamadas por usuário por dia. Se o seu app usa IA apenas no onboarding (1 chamada por usuário no total), o teto calculado fica artificialmente baixo. Se o seu app é um chat com IA (50+ chamadas por usuário ativo), o teto fica artificialmente alto.
+
+<Note>
+  Esta etapa não recalcula o tier que você escolheu na Revisão de Planos — apenas ajusta o **uso por usuário** que multiplica o tier para chegar no consumo total projetado.
+</Note>
+
+## As duas opções
+
+<CardGroup cols={2}>
+  <Card title="Manter valores padrão" icon="check">
+    Aceita os benchmarks do VibeScale. Recomendado quando você ainda não tem números próprios sobre uso da sua base atual.
+  </Card>
+  <Card title="Customizar" icon="pencil">
+    Sobrescreve uma ou mais estimativas com valores que você conhece. Útil quando você já tem métricas reais de uso.
+  </Card>
+</CardGroup>
+
+Em ambos os casos, ao confirmar, o VibeScale carimba a data e gera o relatório com os valores selecionados.
+
+## Como customizar
+
+Para cada API confirmada na etapa anterior, o assistente exibe:
+
+- **Nome da API** + tier escolhido.
+- **Estimativa atual** — em chamadas, mensagens, requisições, ou a unidade que faz sentido para aquela API, por usuário por dia.
+- **Campo editável** — onde você sobrescreve com o seu valor.
+- **Nota explicativa** — quando aplicável, lembrete de como o valor entra no cálculo.
+
+Você pode editar todos, alguns, ou nenhum. Campos não editados mantêm o padrão.
+
+<Tip>
+  Se você não sabe o número exato, prefira **superestimar**. O teto de capacidade é uma margem de conforto — chegar nele significa começar a sentir pressão, não cair. Um número conservador no consumo gera um teto mais conservador também.
+</Tip>
+
+## Confirmar
+
+Ao clicar em **Confirmar premissas**, o VibeScale:
+
+1. Salva as suas estimativas customizadas (ou marca que você aceitou os padrões).
+2. Recalcula o teto de capacidade com os novos valores.
+3. Exibe o relatório completo.
+
+Você pode rodar uma nova análise depois com premissas diferentes — útil para comparar cenários ("e se cada usuário consumir o dobro?").
+
+## Próximo passo
+
+<Card title="Lendo o relatório" icon="file-chart-column" href="/escalabilidade/relatorio">
+  Subscores, teto de capacidade, gargalo, e a aba de Ações.
+</Card>

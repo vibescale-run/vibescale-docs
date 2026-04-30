@@ -1,0 +1,70 @@
+---
+title: "Plan Review"
+description: "The wizard that confirms the real tier of each API your app uses — and where you add APIs the analyzer didn't detect."
+icon: "list-checks"
+---
+
+Plan Review opens automatically when the technical analysis ends. It exists because your app's capacity ceiling depends **directly** on the limits of the tier you contracted on each API — and the analyzer can't know that without asking.
+
+<Note>
+  This step is required. The report only generates after you click **Confirm**. You can skip APIs you don't use, but you need to confirm at least once.
+</Note>
+
+## Why it exists
+
+When the analyzer detects that your app uses, for example, **Supabase** or **OpenAI**, it needs to know whether you're on the free plan, the basic paid plan, or a higher tier. Each plan has different limits — and using the wrong tier in projections would produce an unrealistic ceiling.
+
+Since the tier of each service is private to your account, **only you know**. Plan Review is where that information enters the calculation.
+
+## How it works
+
+The wizard lists each detected API with:
+
+- **API name** — e.g. `Supabase`, `OpenAI`, `Mailgun`.
+- **Category** — managed backend, AI, transactional email, etc.
+- **Suggested tier** — the analyzer's guess (usually the cheapest tier).
+- **Tier dropdown** — options pulled from each service's public catalog.
+
+For each row, pick the tier you actually contracted. If the exact option isn't there, pick the closest — you can edit later.
+
+## Adding APIs the analyzer missed
+
+Not every API is auto-detectable. APIs called indirectly, or recently integrated without leaving traces in the code, can slip through.
+
+To include them in the calculation:
+
+<Steps>
+  <Step title="Click Add API">
+    The button sits below the list of detected APIs.
+  </Step>
+  <Step title="Enter name and (optional) docs URL">
+    VibeScale tries to fetch the plan catalog automatically — pre-fills details for you to review and confirm.
+  </Step>
+  <Step title="Review the pre-filled data">
+    Verify name, category, and available tiers. If auto-fill failed, you can fill manually.
+  </Step>
+  <Step title="Pick the tier you use">
+    Same logic as detected APIs — select your tier and add it to the list.
+  </Step>
+</Steps>
+
+<Tip>
+  The more APIs you include, the more precise the capacity ceiling becomes. It's worth including services with high limits too — they're rarely the bottleneck, but the ceiling computation considers all candidates to pick the tightest one.
+</Tip>
+
+## Confirm
+
+When all tiers are reviewed, click **Confirm**. VibeScale applies your chosen tiers, recomputes each API's projection against your user target, and takes you to **Tune Assumptions** — the final step before the report.
+
+## Common errors
+
+| Message | What happened | What to do |
+|---------|---------------|------------|
+| *Couldn't fetch API data* | The auto-fill when adding an API failed. | Fill manually — name, category, and minimum tier are enough. |
+| *Couldn't save* | Network or server validation issue. | Try again. If it persists, reload the page — your progress is saved. |
+
+## Next step
+
+<Card title="Tune Assumptions" icon="sliders" href="/en/scalability/tune-assumptions">
+  Refine or accept the default per-user usage estimates before seeing the report.
+</Card>
