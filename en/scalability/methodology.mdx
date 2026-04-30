@@ -1,0 +1,91 @@
+---
+title: "Scalability methodology"
+description: "How VibeScale projects API consumption, computes the capacity ceiling, applies the safety margin, and identifies your app's bottleneck."
+icon: "book-open"
+---
+
+<Note>
+  This page describes how the capacity ceiling is computed in plain language, without internal formulas. The goal is for you to interpret the report and challenge the numbers when needed.
+</Note>
+
+## The question the analysis answers
+
+Everything in the methodology revolves around this question: **given your app in its current state and your user target, at what point does the architecture start to give way?**
+
+To answer, VibeScale projects your app's consumption against each API and service, finds the first constraint that breaks, and applies a safety margin. That's the ceiling.
+
+## The three ingredients
+
+For each API or service your app consumes, the ceiling computation needs three things:
+
+<CardGroup cols={3}>
+  <Card title="Tier capacity" icon="layers">
+    The contracted limit at that tier — e.g. 100k requests/month, 50k monthly active users, 10 GB storage.
+  </Card>
+  <Card title="Per-user usage" icon="user">
+    How much each user consumes from that resource per day on average.
+  </Card>
+  <Card title="Limit window" icon="clock">
+    Whether the limit is per second, hour, day, or month — to normalize everything onto the same scale.
+  </Card>
+</CardGroup>
+
+The first two come from you (Plan Review + Tune Assumptions). The third comes from each service's public catalog.
+
+## How the ceiling is computed
+
+In three steps:
+
+<Steps>
+  <Step title="Project per-API consumption">
+    For each API, VibeScale computes how many users fit within that tier's limit — accounting for per-user usage and the limit window.
+  </Step>
+  <Step title="Identify the tightest limit">
+    Among all analyzed APIs, VibeScale picks the **smallest** of the numbers above. That's the service that breaks first — the bottleneck.
+  </Step>
+  <Step title="Apply the safety margin">
+    The final ceiling number is **90%** of the tightest limit. The remaining 10% is buffer for real traffic variance, unexpected spikes, and measurement noise.
+  </Step>
+</Steps>
+
+## Why only one bottleneck matters
+
+The ceiling is defined by the most restrictive service, and only by it. This is a deliberate choice: **upgrading the second-tightest service doesn't move the ceiling** while the true bottleneck still stands in the way.
+
+If you upgrade the bottleneck (or swap it for a provider with higher limits), the ceiling rises — until it bumps into the next-tightest limit, which becomes the new bottleneck. That's the natural cycle of scaling architecture: identify the bottleneck, resolve, find the next one.
+
+<Tip>
+  This is why the **Actions** tab always opens with suggestions focused on the current bottleneck. Resolving other points first is work that doesn't move the ceiling.
+</Tip>
+
+## When the ceiling can't be computed
+
+A few situations make the ceiling come out as **unknown** instead of a number:
+
+- **Missing per-user usage** — the catalog knows the tier limit but has no consumption benchmark, and you skipped Tune Assumptions for that API.
+- **Short-window limit** — some limits are per-second or per-minute (rate limits) which describe peak capacity, not aggregate consumption. VibeScale excludes those from the ceiling calculation because multiplying them by 86,400 seconds/day would produce artificial ceilings of hundreds of millions of users.
+- **Non-numeric constraint** — some tiers have qualitative limits ("email support only") that don't enter capacity math.
+
+When that happens, the capacity timeline simply doesn't render — the rest of the report (subscores, web vitals, API table) remains valid.
+
+## Subscores: Performance, Coupling, Data
+
+Each of the three subscores is independent and runs against its own ruleset:
+
+| Subscore | Evaluates |
+|----------|-----------|
+| **Performance** | LCP, INP, CLS, bundle size. Each metric gets a band (good / acceptable / poor) based on Web Vitals thresholds. |
+| **Coupling** | Modular structure, responsibility isolation, import patterns. Friction points that tend to surface as scale grows. |
+| **Data** | How data is read, written, cached, and propagated. Patterns that hold or don't hold growth. |
+
+The three are presented separately because they attack different dimensions — summing them into a single number doesn't make sense. You can be excellent in Performance and still have a Coupling issue that surfaces in the second quarter.
+
+## How to trust the number
+
+The ceiling is a projection, not a guarantee. It's only as accurate as:
+
+- The accuracy of the tier data you confirmed in Plan Review.
+- The representativeness of the assumptions you kept or adjusted.
+- The coverage of detected APIs (more APIs added = more robust projection).
+
+If the ceiling comes out far higher or lower than your intuition says, it's worth revisiting those three inputs. The computation is deterministic — running the same inputs twice yields the same ceiling.

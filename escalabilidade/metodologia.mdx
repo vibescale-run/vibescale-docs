@@ -1,0 +1,91 @@
+---
+title: "Metodologia de Escalabilidade"
+description: "Como o VibeScale projeta consumo de APIs, calcula o teto de capacidade, aplica a margem de segurança e identifica o gargalo do seu app."
+icon: "book-open"
+---
+
+<Note>
+  Esta página descreve como o teto de capacidade é calculado em linguagem direta, sem fórmulas internas. O objetivo é que você consiga interpretar o relatório e questionar os números quando precisar.
+</Note>
+
+## A pergunta que a análise responde
+
+Tudo na metodologia gira em torno desta pergunta: **dado o seu app no estado atual e a sua meta de usuários, qual é o ponto a partir do qual a arquitetura começa a ceder?**
+
+Para responder, o VibeScale projeta o consumo do seu app em cada API e serviço, encontra a primeira restrição que estoura, e aplica uma margem de segurança. Esse é o teto.
+
+## Os três ingredientes
+
+Para cada API ou serviço que o seu app consome, o cálculo do teto precisa de três coisas:
+
+<CardGroup cols={3}>
+  <Card title="Capacidade do tier" icon="layers">
+    O limite contratado naquele tier — ex.: 100 mil requisições/mês, 50 mil usuários ativos, 10 GB de armazenamento.
+  </Card>
+  <Card title="Uso por usuário" icon="user">
+    Quanto cada usuário consome daquele recurso por dia em média.
+  </Card>
+  <Card title="Janela do limite" icon="clock">
+    Se o limite é por segundo, hora, dia ou mês — para normalizar tudo na mesma escala.
+  </Card>
+</CardGroup>
+
+Os dois primeiros vêm de você (Revisão de Planos + Ajuste de Premissas). O terceiro vem do catálogo público do serviço.
+
+## Como o teto é calculado
+
+Em três passos:
+
+<Steps>
+  <Step title="Projeta consumo por API">
+    Para cada API, o VibeScale calcula quantos usuários cabem dentro do limite daquele tier — considerando o uso por usuário e a janela do limite.
+  </Step>
+  <Step title="Identifica o limite mais apertado">
+    Entre todas as APIs analisadas, o VibeScale escolhe o **menor** dos números calculados acima. Esse é o serviço que vai estourar primeiro — o gargalo.
+  </Step>
+  <Step title="Aplica margem de segurança">
+    O número final do teto é **90%** do limite mais apertado. Os 10% restantes são folga para variações reais de tráfego, picos imprevistos e ruído de medição.
+  </Step>
+</Steps>
+
+## Por que apenas um gargalo importa
+
+O teto é definido pelo serviço mais restritivo, e somente por ele. Esta é uma decisão deliberada: **fazer upgrade do segundo serviço mais apertado não muda o teto** enquanto o gargalo verdadeiro estiver no caminho.
+
+Se você fizer upgrade do gargalo (ou trocar por um provedor com limites maiores), o teto sobe — até esbarrar no próximo limite mais apertado, que vira o novo gargalo. Esse é o ciclo natural de escalonar a arquitetura: identificar o gargalo, resolver, encontrar o próximo.
+
+<Tip>
+  É por isso que a aba **Ações** começa sempre com sugestões focadas no gargalo atual. Resolver outros pontos primeiro é trabalho que não move o teto.
+</Tip>
+
+## Quando o teto não pode ser calculado
+
+Algumas situações fazem o teto sair como **desconhecido** em vez de um número:
+
+- **Falta uso por usuário** — o catálogo conhece o limite do tier mas não tem benchmark de consumo, e você pulou o Ajuste de Premissas para aquela API.
+- **Limite em janela curta** — alguns limites são por segundo ou por minuto (rate limits), que descrevem capacidade de pico, não consumo agregado. O VibeScale exclui esses do cálculo de teto porque multiplicá-los por 86.400 segundos/dia produziria tetos artificiais de centenas de milhões de usuários.
+- **Restrição não numérica** — alguns tiers têm limites qualitativos ("suporte por e-mail apenas") que não entram em cálculo de capacidade.
+
+Quando isso acontece, a linha do tempo de capacidade simplesmente não renderiza — o restante do relatório (subscores, web vitals, tabela de APIs) continua válido.
+
+## Subscores: Performance, Acoplamento, Dados
+
+Cada um dos três subscores é independente e roda contra um conjunto próprio de regras:
+
+| Subscore | Avalia |
+|----------|--------|
+| **Performance** | LCP, INP, CLS, tamanho do bundle. Cada métrica recebe uma faixa (bom / aceitável / ruim) baseada nos thresholds do Web Vitals. |
+| **Acoplamento** | Estrutura modular, isolamento de responsabilidades, padrões de import. Pontos de contato que tendem a virar problema com escala. |
+| **Dados** | Como dados são lidos, escritos, cacheados e propagados. Padrões que aguentam ou não aguentam crescimento. |
+
+Os três são apresentados separadamente porque atacam dimensões diferentes — não faz sentido somá-los em um único número. Você pode estar excelente em Performance e ainda ter um problema de Acoplamento que vai aparecer no segundo trimestre.
+
+## Como confiar no número
+
+O teto é uma projeção, não uma garantia. Ele é tão preciso quanto:
+
+- A precisão dos dados de tier que você confirmou na Revisão de Planos.
+- A representatividade das premissas que você manteve ou ajustou.
+- A cobertura das APIs detectadas (mais APIs adicionadas = projeção mais robusta).
+
+Se o teto sair muito mais alto ou mais baixo do que a sua intuição diz, vale revisitar essas três entradas. O cálculo é determinístico — passar pelas mesmas entradas duas vezes produz o mesmo teto.

@@ -1,0 +1,61 @@
+---
+title: "Tune Assumptions"
+description: "Refine — or accept — the default per-user-per-day usage estimates for each API before seeing the scalability report."
+icon: "sliders"
+---
+
+Tune Assumptions is the last step before the report. It appears right after Plan Review.
+
+## Why it exists
+
+To project consumption against your target, VibeScale needs to know **how much each user consumes from each API per day**. The default values come from public benchmarks — they're reasonable for most apps, but they may sit well above or below what your product actually does.
+
+An example: the default estimate for an AI API might assume 5 calls per user per day. If your app uses AI only at onboarding (1 call per user total), the computed ceiling sits artificially low. If your app is an AI chat (50+ calls per active user), the ceiling sits artificially high.
+
+<Note>
+  This step doesn't recompute the tier you picked at Plan Review — it just adjusts the **per-user usage** that multiplies the tier to arrive at total projected consumption.
+</Note>
+
+## The two options
+
+<CardGroup cols={2}>
+  <Card title="Keep defaults" icon="check">
+    Accepts the VibeScale benchmarks. Recommended when you don't have your own usage numbers from the current base yet.
+  </Card>
+  <Card title="Customize" icon="pencil">
+    Overrides one or more estimates with values you know. Useful when you already have real usage metrics.
+  </Card>
+</CardGroup>
+
+In either case, on confirmation VibeScale stamps the date and generates the report with the selected values.
+
+## How to customize
+
+For each API confirmed in the previous step, the wizard shows:
+
+- **API name** + chosen tier.
+- **Current estimate** — in calls, messages, requests, or whichever unit fits that API, per user per day.
+- **Editable field** — where you override with your value.
+- **Explanatory note** — when applicable, a reminder of how the value enters the calculation.
+
+You can edit all, some, or none. Untouched fields keep the default.
+
+<Tip>
+  If you don't know the exact number, prefer to **overestimate**. The capacity ceiling is a comfort margin — hitting it means starting to feel pressure, not crashing. A conservative consumption number produces a conservative ceiling too.
+</Tip>
+
+## Confirm
+
+When you click **Confirm assumptions**, VibeScale:
+
+1. Saves your custom estimates (or marks that you accepted defaults).
+2. Recomputes the capacity ceiling with the new values.
+3. Renders the full report.
+
+You can run another analysis later with different assumptions — useful for comparing scenarios ("what if each user consumes twice as much?").
+
+## Next step
+
+<Card title="Reading the report" icon="file-chart-column" href="/en/scalability/report">
+  Subscores, capacity ceiling, bottleneck, and the Actions tab.
+</Card>

@@ -1,0 +1,98 @@
+---
+title: "Lendo o relatório de Escalabilidade"
+description: "Como interpretar os subscores, o teto de capacidade, os limites de APIs e as abas de Findings, Gaps e Ações."
+icon: "file-chart-column"
+---
+
+O relatório é dividido em quatro blocos que respondem perguntas progressivamente mais específicas: **estou bem hoje?**, **aguento a meta?**, **onde está o gargalo?**, **o que faço agora?**.
+
+## Cabeçalho — três subscores
+
+No topo do relatório, três pontuações resumem o estado atual do app:
+
+| Subscore | O que mede |
+|----------|-----------|
+| **Performance** | Web Vitals (LCP, INP, CLS) e tamanho do bundle. O que o usuário sente ao abrir o app. |
+| **Acoplamento** | Estrutura do código e pontos onde o crescimento amplifica dívida técnica. |
+| **Dados** | Como os dados fluem e se a camada aguenta a meta sem refatoração. |
+
+Cada subscore é um número de 0 a 100. Um badge ao lado do título indica os números atuais e a meta — algo como **"1.500 agora → 5.000 na meta"**.
+
+## Métricas Web Vitals
+
+Logo abaixo dos subscores, uma linha com os valores numéricos das métricas que alimentam o subscore de Performance:
+
+- **LCP** (Largest Contentful Paint) em milissegundos — tempo até o conteúdo principal aparecer.
+- **INP** (Interaction to Next Paint) em milissegundos — responsividade a cliques e toques.
+- **CLS** (Cumulative Layout Shift) — quanto o layout pula durante o carregamento.
+- **Bundle** — tamanho do JavaScript em KB.
+
+São os mesmos valores que ferramentas como Lighthouse e PageSpeed Insights usam — a diferença é que aqui eles vêm acompanhados de uma análise contextualizada por LLM nas abas Findings/Actions.
+
+## Linha do tempo de capacidade
+
+Esta seção é onde você descobre se o seu app aguenta a meta. Renderiza uma linha do tempo com três marcadores:
+
+- **Onde você está hoje** (usuários atuais).
+- **Onde quer chegar** (meta em 6 meses).
+- **Teto de capacidade** — o ponto a partir do qual você começa a sentir pressão.
+
+Quando o teto está à direita da meta, o cabeçalho mostra **"Aguenta a meta"**. Quando está à esquerda, mostra **"Não aguenta a meta"** e o relatório destaca o gargalo logo abaixo.
+
+<Note>
+  O teto incorpora uma margem de segurança de 10% — chegar nele não significa que o seu app cai, significa que você vai começar a notar lentidão, erros intermitentes, ou contas crescendo mais rápido. É o sinal de que está na hora de revisitar a arquitetura ou os tiers de plano.
+</Note>
+
+A seção só renderiza quando o pipeline conseguiu calcular um teto numérico. Se o teto for desconhecido (faltam dados de algum serviço), a linha do tempo é omitida e o relatório segue normalmente para as outras seções.
+
+## Limites de APIs de terceiros
+
+Tabela detalhada com cada API que entrou no cálculo. Para cada linha:
+
+| Coluna | O que mostra |
+|--------|--------------|
+| **API** | Nome do serviço + tier que você confirmou na Revisão de Planos. |
+| **Restrição** | Qual limite específico daquele tier está sendo avaliado (ex.: requisições/hora, MAU, tokens/mês). |
+| **Status agora** | Verde / amarelo / vermelho — onde você está hoje em relação ao limite. |
+| **Status na meta** | O mesmo, mas projetado na meta de 6 meses. |
+| **Consumo projetado** | Número absoluto na meta vs. o limite contratado. |
+
+<AccordionGroup>
+  <Accordion title="Verde — Tranquilo">
+    Consumo projetado está abaixo de 50% do limite. Não há pressão neste tier.
+  </Accordion>
+  <Accordion title="Amarelo — Atenção">
+    Consumo projetado está entre 50% e 90% do limite. Vale planejar upgrade ou mitigação antes de chegar lá.
+  </Accordion>
+  <Accordion title="Vermelho — Crítico">
+    Consumo projetado está acima de 90% do limite. Esta API é candidata a ser o gargalo — comece pelo upgrade ou pela troca de provedor.
+  </Accordion>
+</AccordionGroup>
+
+## Findings, Gaps e Ações
+
+Três abas no rodapé do relatório:
+
+<CardGroup cols={3}>
+  <Card title="Findings" icon="triangle-alert">
+    Problemas concretos encontrados na análise. Cada finding tem severidade, descrição e contexto.
+  </Card>
+  <Card title="Gaps" icon="lightbulb">
+    Lacunas estruturais — coisas que faltam ou estão fora do padrão e podem virar problema com escala.
+  </Card>
+  <Card title="Ações" icon="list-todo">
+    Sugestões priorizadas de o que fazer agora. Cada ação aponta para o finding ou gap que ela endereça.
+  </Card>
+</CardGroup>
+
+A aba **Ações** é o ponto de partida para refatorações. As ações são ordenadas pela combinação de impacto no teto de capacidade e esforço estimado — comece pelas primeiras.
+
+<Tip>
+  Você pode marcar ações como concluídas dentro do portal e rodar uma nova análise depois para validar se o teto subiu.
+</Tip>
+
+## Próximo passo
+
+<Card title="Metodologia" icon="book-open" href="/escalabilidade/metodologia">
+  Veja exatamente como o teto é calculado e por que apenas um gargalo importa.
+</Card>
